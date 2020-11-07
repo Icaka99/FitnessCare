@@ -1,0 +1,42 @@
+﻿@model FitnessCare.Web.ViewModels.Blog.ArticlesListViewModel
+<h1>Welcome to our Blog </h1>
+
+<h2>Best articles:</h2>
+
+<div class="row">
+
+     @foreach (var article in Model.Articles)
+    {
+        <div class="card col-md-4 mb-4" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">@article.Title</h5>
+                <p class="card-text">@article.Content</p>
+                <a href="/Blog/Article?Id=@article.Id" class="card-link">Show article</a>
+            </div>
+        </div>
+    }
+</div>
+
+<form action="/Blog/Add">
+    <input class="btn btn-primary" type="submit" value="Add article" />
+</form>
+
+<h3>All articles by date:</h3>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Date:</th>
+            <th scope="col">Article:</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var article in Model.OrderedArticles)
+        {
+            <tr>
+                <th scope="row">@article.CreatedOn</th>
+                <td>"@article.Title" - @article.CreatedOn.Year</td>
+            </tr>
+        }
+    </tbody>
+</table>

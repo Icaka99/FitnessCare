@@ -1,9 +1,8 @@
 ﻿namespace FitnessCare.Web.ViewModels.Settings
 {
+    using AutoMapper;
     using FitnessCare.Data.Models;
     using FitnessCare.Services.Mapping;
-
-    using AutoMapper;
 
     public class SettingViewModel : IMapFrom<Setting>, IHaveCustomMappings
     {

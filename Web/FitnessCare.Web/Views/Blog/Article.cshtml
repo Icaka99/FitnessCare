@@ -1,10 +1,20 @@
-﻿using System;
-namespace FitnessCare.Web.Views.Blog
-{
-    public class Article
-    {
-        public Article()
-        {
-        }
-    }
-}
+﻿<section class="py-5">
+    <div class="container">
+        <h1 style="margin: 2%; text-align: center;">Trip</h1>
+        <div>
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" readonly class="form-control" id="title" name="Title" value="@Model.Title">
+            </div>
+            <div class="form-group">
+                <label for="content">Content</label>
+                <input type="text" readonly class="form-control" id="content" name="Content" value="@Model.Content">
+            </div>
+            <div>
+                <a href="/Blog/Delete?Id=@Model.Id" class="card-link">Delete article</a>
+            </div>
+            <div class="form-group text-center">
+            </div>
+        </div>
+    </div>
+</section>

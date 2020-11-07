@@ -1,10 +1,23 @@
-﻿using System;
-namespace FitnessCare.Web.Views.Blog
-{
-	public class Add
-	{
-		public Add()
-		{
-		}
-	}
-}
+﻿@using FitnessCare.Web.ViewModels.Blog
+@model AddArticleInputModel
+<section class="py-5">
+    <div class="container">
+        <h1 style="margin: 2%; text-align: center;">Add Article</h1>
+        <div style="padding: 5%;">
+            <form method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Title"></label>
+                    <input asp-for="Title" class="form-control" name="Title" placeholder="Title">
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Content"></label>
+                    <textarea rows="3" asp-for="Content" class="form-control" placeholder="Content"></textarea>
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary text-uppercase">Submit</button>
+            </form>
+        </div>
+    </div>
+</section>

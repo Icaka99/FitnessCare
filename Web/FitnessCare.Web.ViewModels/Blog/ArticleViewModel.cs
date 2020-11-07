@@ -1,12 +1,15 @@
-﻿namespace FitnessCare.Web.ViewModels
+﻿namespace FitnessCare.Web.ViewModels.Blog
 {
-    using FitnessCare.Data.Models;
-    using FitnessCare.Services.Mapping;
+    using System;
 
-    public class ArticleViewModel : IMapFrom<Article>
+    public class ArticleViewModel
     {
+        public int Id { get; set; }
+
         public string Title { get; set; }
 
         public string Content { get; set; }
+
+        public DateTime CreatedOn { get; set; }
     }
 }

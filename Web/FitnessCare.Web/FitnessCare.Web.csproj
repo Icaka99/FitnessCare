@@ -23,17 +23,27 @@
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.205" PrivateAssets="all">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="bootstrap" Version="4.5.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\FitnessCare.Common\FitnessCare.Common.csproj" />
     <ProjectReference Include="..\..\Data\FitnessCare.Data.Models\FitnessCare.Data.Models.csproj" />
     <ProjectReference Include="..\..\Data\FitnessCare.Data\FitnessCare.Data.csproj" />
-    <ProjectReference Include="..\..\Services\FitnessCare.Services.Data\FitnessCare.Services.Data.csproj" />
     <ProjectReference Include="..\..\Services\FitnessCare.Services.Mapping\FitnessCare.Services.Mapping.csproj" />
     <ProjectReference Include="..\..\Services\FitnessCare.Services.Messaging\FitnessCare.Services.Messaging.csproj" />
     <ProjectReference Include="..\..\Services\FitnessCare.Services\FitnessCare.Services.csproj" />
     <ProjectReference Include="..\FitnessCare.Web.Infrastructure\FitnessCare.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\FitnessCare.Web.ViewModels\FitnessCare.Web.ViewModels.csproj" />
+    <ProjectReference Include="..\..\Services\FitnessCare.Services.Data\FitnessCare.Services.Data.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Forum\" />
+    <Folder Include="Views\Blog\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Views\Forum\Forum.cshtml" />
   </ItemGroup>
 </Project>

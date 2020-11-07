@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
@@ -22,6 +22,8 @@
     <ProjectReference Include="..\..\Data\FitnessCare.Data.Common\FitnessCare.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\FitnessCare.Data.Models\FitnessCare.Data.Models.csproj" />
     <ProjectReference Include="..\FitnessCare.Services.Mapping\FitnessCare.Services.Mapping.csproj" />
+    <ProjectReference Include="..\..\Data\FitnessCare.Data\FitnessCare.Data.csproj" />
+    <ProjectReference Include="..\..\Web\FitnessCare.Web.ViewModels\FitnessCare.Web.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>
