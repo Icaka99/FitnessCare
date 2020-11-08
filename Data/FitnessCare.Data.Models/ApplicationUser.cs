@@ -35,6 +35,8 @@ namespace FitnessCare.Data.Models
 
         public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
 
-        public ICollection<Post> Posts { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
+
+        public virtual ICollection<Article> Articles { get; set; }
     }
 }

@@ -24,6 +24,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="bootstrap" Version="4.5.3" />
+    <PackageReference Include="HtmlSanitizer" Version="5.0.355" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,8 +43,5 @@
   <ItemGroup>
     <Folder Include="Views\Forum\" />
     <Folder Include="Views\Blog\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Remove="Views\Forum\Forum.cshtml" />
   </ItemGroup>
 </Project>

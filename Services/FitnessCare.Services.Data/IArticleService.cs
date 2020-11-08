@@ -1,6 +1,7 @@
 ﻿namespace FitnessCare.Services.Data
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     using FitnessCare.Web.ViewModels.Blog;
 
@@ -12,7 +13,7 @@
 
         IEnumerable<ArticleViewModel> GetAllOrderedArticles();
 
-        void Create(AddArticleInputModel input, string id);
+        Task CreateAsync(AddArticleInputModel input, string id);
 
         ArticleViewModel GetDetails(int id);
 

@@ -1,19 +1,23 @@
 ﻿namespace FitnessCare.Web.Controllers
 {
     using System.Security.Claims;
-
+    using System.Threading.Tasks;
+    using FitnessCare.Data.Models;
     using FitnessCare.Services.Data;
     using FitnessCare.Web.ViewModels.Blog;
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
     public class BlogController : BaseController
     {
         private readonly IArticleService articleService;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public BlogController(IArticleService articleService)
+        public BlogController(IArticleService articleService, UserManager<ApplicationUser> userManager)
         {
             this.articleService = articleService;
+            this.userManager = userManager;
         }
 
         public IActionResult Blog()
@@ -37,16 +41,16 @@
 
         [HttpPost]
         [Authorize]
-        public IActionResult Add(AddArticleInputModel input)
+        public async Task<IActionResult> Add(AddArticleInputModel input)
         {
             if (!this.ModelState.IsValid)
             {
                 return this.View();
             }
 
-            string userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await this.userManager.GetUserAsync(this.User);
 
-            this.articleService.Create(input, userId);
+            await this.articleService.CreateAsync(input, user.Id);
             return this.Redirect("/Blog/ThankYou");
         }
 
@@ -58,6 +62,11 @@
         public IActionResult Article(int id)
         {
             var article = this.articleService.GetDetails(id);
+            if (article == null)
+            {
+                return this.NotFound();
+            }
+
             return this.View(article);
         }
 

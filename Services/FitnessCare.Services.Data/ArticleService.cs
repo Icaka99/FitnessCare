@@ -3,6 +3,7 @@
     using System.Collections.Generic;
 
     using System.Linq;
+    using System.Threading.Tasks;
 
     using FitnessCare.Data;
     using FitnessCare.Data.Models;
@@ -17,7 +18,7 @@
             this.db = db;
         }
 
-        public void Create(AddArticleInputModel input, string id)
+        public async Task CreateAsync(AddArticleInputModel input, string id)
         {
             var dbArticle = new Article
             {
@@ -25,8 +26,8 @@
                 Content = input.Content,
                 UserId = id,
             };
-            this.db.Articles.Add(dbArticle);
-            this.db.SaveChanges();
+            await this.db.Articles.AddAsync(dbArticle);
+            await this.db.SaveChangesAsync();
         }
 
         public IEnumerable<ArticleViewModel> GetAll()
@@ -37,6 +38,7 @@
                 Content = x.Content,
                 CreatedOn = x.CreatedOn,
                 Id = x.Id,
+                UserUserName = x.User.UserName,
             }).ToList();
         }
 
@@ -66,6 +68,7 @@
                     Title = x.Title,
                     Content = x.Content,
                     Id = x.Id,
+                    UserUserName = x.User.UserName,
                 })
                 .FirstOrDefault();
             return article;
