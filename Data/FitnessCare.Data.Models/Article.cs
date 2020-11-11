@@ -1,7 +1,5 @@
 ﻿namespace FitnessCare.Data.Models
 {
-    using System;
-
     using System.ComponentModel.DataAnnotations;
 
     using FitnessCare.Data.Common.Models;

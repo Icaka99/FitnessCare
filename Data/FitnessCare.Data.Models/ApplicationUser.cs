@@ -17,6 +17,8 @@ namespace FitnessCare.Data.Models
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
             this.Posts = new HashSet<Post>();
+            this.Articles = new HashSet<Article>();
+            this.Comments = new HashSet<Comment>();
         }
 
         // Audit info
@@ -38,5 +40,7 @@ namespace FitnessCare.Data.Models
         public virtual ICollection<Post> Posts { get; set; }
 
         public virtual ICollection<Article> Articles { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

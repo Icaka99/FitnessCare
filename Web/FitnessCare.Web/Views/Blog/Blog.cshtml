@@ -71,16 +71,46 @@
                 </table>
 
                 <!-- Pagination -->
-                <ul class="pagination justify-content-center mb-4">
-                    <li class="page-item">
-                        <a class="page-link" href="#">&larr; Older</a>
-                    </li>
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#">Newer &rarr;</a>
-                    </li>
-                </ul>
+                <nav>
+                    <ul class="pagination justify-content-center">
 
-            </div>
+                        @if (Model.CurrentPage == 1)
+                        {
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">Previous</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="/Blog/Blog?page=@(Model.CurrentPage - 1)">Previous</a>
+                            </li>
+                        }
+
+                        @for (int i = 1; i <= Model.PagesCount; i++)
+                        {
+                            var active = i == Model.CurrentPage ? "active" : string.Empty;
+
+                            <li class="page-item @active">
+                                <a class="page-link" href="/Blog/Blog?page=@i">@i</a>
+                            </li>
+                        }
+                        @if (Model.CurrentPage == Model.PagesCount)
+                        {
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">Next</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="/Blog/Blog?page=@(Model.CurrentPage + 1)">Next</a>
+                            </li>
+                        }
+                    </ul>
+                    </nav>
+
+                </div>
 
             <!-- Sidebar Widgets Column -->
             <div class="col-md-4">

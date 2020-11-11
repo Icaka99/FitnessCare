@@ -440,7 +440,7 @@ namespace FitnessCare.Data.Migrations
             modelBuilder.Entity("FitnessCare.Data.Models.Article", b =>
                 {
                     b.HasOne("FitnessCare.Data.Models.ApplicationUser", "User")
-                        .WithMany()
+                        .WithMany("Articles")
                         .HasForeignKey("UserId");
                 });
 
@@ -453,7 +453,7 @@ namespace FitnessCare.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("FitnessCare.Data.Models.ApplicationUser", "User")
-                        .WithMany()
+                        .WithMany("Comments")
                         .HasForeignKey("UserId");
                 });
 

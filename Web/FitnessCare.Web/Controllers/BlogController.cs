@@ -1,7 +1,8 @@
-﻿namespace FitnessCare.Web.Controllers
+﻿ namespace FitnessCare.Web.Controllers
 {
-    using System.Security.Claims;
+    using System;
     using System.Threading.Tasks;
+
     using FitnessCare.Data.Models;
     using FitnessCare.Services.Data;
     using FitnessCare.Web.ViewModels.Blog;
@@ -11,6 +12,8 @@
 
     public class BlogController : BaseController
     {
+        private const int ItemsPerPage = 5;
+
         private readonly IArticleService articleService;
         private readonly UserManager<ApplicationUser> userManager;
 
@@ -20,15 +23,19 @@
             this.userManager = userManager;
         }
 
-        public IActionResult Blog()
+        public IActionResult Blog(int page)
         {
-            var articles = this.articleService.GetAll();
+            var articles = this.articleService.GetArticles(ItemsPerPage, (page - 1) * ItemsPerPage);
             var orderedArticles = this.articleService.GetAllOrderedArticles();
+
+            var count = this.articleService.GetCount();
 
             var model = new ArticlesListViewModel
             {
                 Articles = articles,
                 OrderedArticles = orderedArticles,
+                PagesCount = (int)Math.Ceiling((double)count / ItemsPerPage),
+                CurrentPage = page,
             };
             return this.View(model);
         }

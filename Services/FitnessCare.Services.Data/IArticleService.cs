@@ -11,6 +11,8 @@
 
         IEnumerable<ArticleViewModel> GetAll();
 
+        IEnumerable<ArticleViewModel> GetArticles(int? take, int skip);
+
         IEnumerable<ArticleViewModel> GetAllOrderedArticles();
 
         Task CreateAsync(AddArticleInputModel input, string id);

@@ -7,5 +7,9 @@
         public IEnumerable<ArticleViewModel> Articles { get; set; }
 
         public IEnumerable<ArticleViewModel> OrderedArticles { get; set; }
+
+        public int PagesCount { get; set; }
+
+        public int CurrentPage { get; set; }
     }
 }
