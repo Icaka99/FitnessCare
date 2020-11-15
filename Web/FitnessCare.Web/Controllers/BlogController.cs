@@ -37,6 +37,12 @@
                 PagesCount = (int)Math.Ceiling((double)count / ItemsPerPage),
                 CurrentPage = page,
             };
+
+            if (model.PagesCount == 0)
+            {
+                model.PagesCount = 1;
+            }
+
             return this.View(model);
         }
 

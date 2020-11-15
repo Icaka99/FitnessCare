@@ -11,10 +11,9 @@
     <title>Blog Post - Start Bootstrap Template</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    <!--<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
     <!-- Custom styles for this template -->
-    <link href="css/blog-post.css" rel="stylesheet">
+    <!--<link href="css/blog-post.css" rel="stylesheet">-->
 
 </head>
 
@@ -27,13 +26,26 @@
             <!-- Post Content Column -->
             <div class="col-lg-8">
 
-                 <!-- Title -->
+                <!-- Title -->
                 <h1 class="mt-4">@Model.Title</h1>
 
                 <!-- Author -->
                 <p class="lead">
                     by
                     <a href="#">@Model.UserUserName</a> <span>Posted on @Model.CreatedOn</span>
+                    <div>
+                        <div>
+                            <a href="#" onclick="sendVote(@Model.Id, true)">
+                                <i class="far fa-thumbs-up"></i>
+                            </a>
+                        </div>
+                        <div id="votesCount">@Model.VotesCount</div>
+                        <div>
+                            <a href="#" onclick="sendVote(@Model.Id, false)">
+                                <i class="far fa-thumbs-down"></i>
+                            </a>
+                        </div>
+                    </div>
                 </p>
 
                 <!-- Content -->
@@ -42,30 +54,53 @@
                 </div>
 
                 <div>
-                <a href="/Blog/Delete?Id=@Model.Id" class="btn btn-danger">Delete</a>
+                    <a href="/Blog/Delete?Id=@Model.Id" class="btn btn-danger">Delete</a>
                 </div>
 
                 <!-- Comments Form -->
                 <div class="card my-4">
                     <h5 class="card-header">Leave a Comment:</h5>
                     <div class="card-body">
-                        <form>
+                        <form asp-controller="Comment" asp-action="Create" method="post">
+                            <input type="hidden" name="ArticleId" value="@Model.Id" />
                             <div class="form-group">
-                                <textarea class="form-control" rows="3"></textarea>
+                                <label for="Content"></label>
+                                <textarea name="Content" id="Content" class="form-control" placeholder="Content" rows="3"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary offset-10" >AddComment</button>
                         </form>
                     </div>
                 </div>
 
                 <!-- Single Comment -->
-                <div class="media mb-4">
-                    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                    <div class="media-body">
-                        <h5 class="mt-0">Commenter Name</h5>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                @foreach (var comment in Model.Comments)
+                {
+                    <div class="media mb-4">
+                        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+                        <div class="media-body">
+                            <h5 class="mt-0">@comment.UserUsername</h5>
+                            <h6 class="mt-0">@comment.CreatedOn</h6>
+                            @comment.Content
+                        </div>
                     </div>
-                </div>
+                    <div class="offset-10">
+                        <button type="submit" class="btn btn-primary" onclick="showAddCommentForm(@comment.Id)">Reply</button>
+                    </div>
+                    <div>
+                        <form id="AddCommentForm" asp-controller="Comment" asp-action="Create" method="post" style="display: none">
+                            <input type="hidden" name="ArticleId" value="@Model.Id" />
+                            <input type="hidden" name="ParentId" value="0"/>
+                            <div>
+                                <label for="Content"></label>
+                                <textarea name="Content" id="Content" class="form-control"></textarea>
+                            </div>
+                            <div>
+                                <input type="submit" class="btn btn-primary" value="Add comment" />
+                            </div>
+                            <hr />
+                        </form>
+                    </div>
+                }
 
                 <!-- Comment with nested comments -->
                 <div class="media mb-4">
@@ -160,10 +195,46 @@
         <!-- /.row -->
 
     </div>
-    <!-- Bootstrap core JavaScript -->
+    Bootstrap core JavaScript
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
-
 </html>
+
+@section Scripts {
+    <script>
+        function showAddCommentForm(parentId) {
+            $("#AddCommentForm input[name='ParentId']").val(parentId);
+            $("#AddCommentForm").show();
+            $([document.documentElement, document.body]).animate({
+                scrollTop: $("#AddCommentForm").offset().top
+            }, 500);
+        }
+
+
+        function sendVote(ArticleId, IsUpVote) {
+            var json = { articleId: ArticleId, isUpVote: IsUpVote };
+            xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function (data) {
+                $("#votesCount").html(data.votesCount);
+            }
+            xhr.open("POST", "/api/vote", json);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send();
+        };
+        @*function sendVote(ArticleId, IsUpVote) {
+            var json = { articleId: ArticleId, isUpVote: IsUpVote };
+
+            $.ajax({
+                url: "/api/vote",
+                type: "POST",
+                data: json,
+                contentType: "application/json",
+                success: function (data) {
+                    $("#votesCount").html(data.votesCount);
+                }
+            });
+        }*@
+    </script>
+}

@@ -1,9 +1,11 @@
 ﻿namespace FitnessCare.Web.ViewModels.Blog
 {
     using System;
+    using System.Collections.Generic;
     using System.Net;
     using System.Text.RegularExpressions;
 
+    using FitnessCare.Data.Models;
     using Ganss.XSS;
 
     public class ArticleViewModel
@@ -19,6 +21,10 @@
         public DateTime CreatedOn { get; set; }
 
         public string UserUserName { get; set; }
+
+        public int VotesCount { get; set; }
+
+        public IEnumerable<Comment> Comments { get; set; }
 
         public string ShortContent
         {

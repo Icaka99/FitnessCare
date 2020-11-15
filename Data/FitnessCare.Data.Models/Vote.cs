@@ -4,19 +4,17 @@
 
     using FitnessCare.Data.Common.Models;
 
-    public class Comment : BaseDeletableModel<int>
+    public class Vote : BaseModel<int>
     {
-        public int? ParentId { get; set; }
+        public int ArticleId { get; set; }
 
-        public Comment Parent { get; set; }
+        public virtual Article Article { get; set; }
 
         [Required]
-        public string Content { get; set; }
-
         public string UserId { get; set; }
 
-        public string UserUsername { get; set; }
-
         public virtual ApplicationUser User { get; set; }
+
+        public VoteType Type { get; set; }
     }
 }

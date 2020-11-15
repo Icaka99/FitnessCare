@@ -28,8 +28,7 @@
             <div class="col-md-8">
 
                 <h1 class="my-4">
-                    Best articles
-                    <small>Secondary Text</small>
+                    Best articles:
                 </h1>
 
                 <!-- Blog Post -->
@@ -64,7 +63,7 @@
                         {
                             <tr>
                                 <th scope="row">@article.CreatedOn</th>
-                                <td>"@article.Title" - @article.CreatedOn.Year</td>
+                                <td><span>"<a href="/Blog/Article?Id=@article.Id">@article.Title</a>" - @article.CreatedOn.Year</span></td>
                             </tr>
                         }
                     </tbody>

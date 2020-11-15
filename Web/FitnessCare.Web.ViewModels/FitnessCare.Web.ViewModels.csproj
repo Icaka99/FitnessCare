@@ -26,5 +26,7 @@
 
   <ItemGroup>
     <Folder Include="Blog\" />
+    <Folder Include="Votes\" />
+    <Folder Include="Comments\" />
   </ItemGroup>
 </Project>

@@ -1,5 +1,6 @@
 ﻿namespace FitnessCare.Services.Data
 {
+    using System.Collections;
     using System.Collections.Generic;
 
     using System.Linq;
@@ -39,6 +40,8 @@
                 CreatedOn = x.CreatedOn,
                 Id = x.Id,
                 UserUserName = x.User.UserName,
+                VotesCount = 0,
+                Comments = x.Comments,
             }).ToList();
         }
 
@@ -53,6 +56,8 @@
                     CreatedOn = x.CreatedOn,
                     Id = x.Id,
                     UserUserName = x.User.UserName,
+                    VotesCount = 0,
+                    Comments = x.Comments,
                 })
                 .Skip(skip);
             if (take.HasValue)
@@ -71,6 +76,8 @@
                 Content = x.Content,
                 CreatedOn = x.CreatedOn,
                 Id = x.Id,
+                VotesCount = 0,
+                Comments = x.Comments,
             })
             .OrderByDescending(x => x.CreatedOn)
             .ToList();
@@ -91,6 +98,8 @@
                     Id = x.Id,
                     UserUserName = x.User.UserName,
                     CreatedOn = x.CreatedOn,
+                    VotesCount = 0,
+                    Comments = x.Comments,
                 })
                 .FirstOrDefault();
             return article;

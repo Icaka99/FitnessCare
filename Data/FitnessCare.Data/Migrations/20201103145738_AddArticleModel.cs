@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace FitnessCare.Data.Migrations
+﻿namespace FitnessCare.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AddArticleModel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,7 +20,7 @@ namespace FitnessCare.Data.Migrations
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     Title = table.Column<string>(maxLength: 80, nullable: false),
                     Content = table.Column<string>(nullable: false),
-                    UserId = table.Column<string>(nullable: true)
+                    UserId = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -44,7 +45,7 @@ namespace FitnessCare.Data.Migrations
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     Name = table.Column<string>(maxLength: 80, nullable: false),
                     Description = table.Column<string>(nullable: true),
-                    ImageURL = table.Column<string>(nullable: true)
+                    ImageURL = table.Column<string>(nullable: true),
                 },
                 constraints: table =>
                 {
@@ -64,7 +65,7 @@ namespace FitnessCare.Data.Migrations
                     Title = table.Column<string>(maxLength: 80, nullable: false),
                     Content = table.Column<string>(nullable: false),
                     UserId = table.Column<string>(nullable: true),
-                    CategoryId = table.Column<int>(nullable: false)
+                    CategoryId = table.Column<int>(nullable: false),
                 },
                 constraints: table =>
                 {
@@ -95,7 +96,7 @@ namespace FitnessCare.Data.Migrations
                     DeletedOn = table.Column<DateTime>(nullable: true),
                     Content = table.Column<string>(nullable: false),
                     UserId = table.Column<string>(nullable: true),
-                    PostId = table.Column<int>(nullable: false)
+                    PostId = table.Column<int>(nullable: false),
                 },
                 constraints: table =>
                 {
