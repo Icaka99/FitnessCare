@@ -43,7 +43,7 @@
                             <a href="/Blog/Article?Id=@article.Id" class="btn btn-primary">Read More &rarr;</a>
                         </div>
                         <div class="card-footer text-muted">
-                            Posted on @article.CreatedOn by
+                            Posted on <time datetime="@article.CreatedOn.ToString("O")"></time> by
                             <a href="#">@article.UserUserName</a>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                         @foreach (var article in Model.OrderedArticles)
                         {
                             <tr>
-                                <th scope="row">@article.CreatedOn</th>
+                                <th scope="row"><time datetime="@article.CreatedOn.ToString("O")"></time></th>
                                 <td><span>"<a href="/Blog/Article?Id=@article.Id">@article.Title</a>" - @article.CreatedOn.Year</span></td>
                             </tr>
                         }

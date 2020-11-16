@@ -32,7 +32,7 @@
                 <!-- Author -->
                 <p class="lead">
                     by
-                    <a href="#">@Model.UserUserName</a> <span>Posted on @Model.CreatedOn</span>
+                    <a href="#">@Model.UserUserName</a> <span>Posted on <time datetime="@Model.CreatedOn.ToString("O")"></time></span>
                     <div>
                         <div>
                             <a href="#" onclick="sendVote(@Model.Id, true)">
@@ -54,7 +54,7 @@
                 </div>
 
                 <div>
-                    <a href="/Blog/Delete?Id=@Model.Id" class="btn btn-danger">Delete</a>
+                    <a href="/Blog/Delete?Id=@Model.Id" class="btn btn-danger" onclick="console.log("test")">Delete</a>
                 </div>
 
                 <!-- Comments Form -->
@@ -79,7 +79,7 @@
                         <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
                         <div class="media-body">
                             <h5 class="mt-0">@comment.UserUsername</h5>
-                            <h6 class="mt-0">@comment.CreatedOn</h6>
+                            <h6 class="mt-0"><time datetime="@comment.CreatedOn.ToString("O")"></time></h6>
                             @comment.Content
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                         <button type="submit" class="btn btn-primary" onclick="showAddCommentForm(@comment.Id)">Reply</button>
                     </div>
                     <div>
-                        <form id="AddCommentForm" asp-controller="Comment" asp-action="Create" method="post" style="display: none">
+                        <form id="@comment.Id" asp-controller="Comment" asp-action="Create" method="post" style="display: none">
                             <input type="hidden" name="ArticleId" value="@Model.Id" />
                             <input type="hidden" name="ParentId" value="0"/>
                             <div>
@@ -95,7 +95,7 @@
                                 <textarea name="Content" id="Content" class="form-control"></textarea>
                             </div>
                             <div>
-                                <input type="submit" class="btn btn-primary" value="Add comment" />
+                                <input type="submit" class="btn btn-primary" value="Add reply" />
                             </div>
                             <hr />
                         </form>
@@ -206,7 +206,7 @@
     <script>
         function showAddCommentForm(parentId) {
             $("#AddCommentForm input[name='ParentId']").val(parentId);
-            $("#AddCommentForm").show();
+            $("#" + parentId).toggle();
             $([document.documentElement, document.body]).animate({
                 scrollTop: $("#AddCommentForm").offset().top
             }, 500);
@@ -214,14 +214,15 @@
 
 
         function sendVote(ArticleId, IsUpVote) {
-            var json = { articleId: ArticleId, isUpVote: IsUpVote };
+            var json = JSON.stringify({ articleId: ArticleId, isUpVote: IsUpVote });
             xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function (data) {
-                $("#votesCount").html(data.votesCount);
+                console.log(data);
+                $("#votesCount").html(data.currentTarget.responseText);
             }
-            xhr.open("POST", "/api/vote", json);
+            xhr.open("POST", "/api/vote");
             xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.send();
+            xhr.send(json);
         };
         @*function sendVote(ArticleId, IsUpVote) {
             var json = { articleId: ArticleId, isUpVote: IsUpVote };

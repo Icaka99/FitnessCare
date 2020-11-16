@@ -24,14 +24,13 @@
 
         [HttpPost]
         [IgnoreAntiforgeryToken]
-        [Consumes("application/json")]
-        public async Task<ActionResult<int>> Post(int articleId, bool isUpVote)
+        public async Task<ActionResult<int>> Post(VoteInputModel input)
         {
             var user = await this.userManager.GetUserAsync(this.User);
 
-            await this.voteService.VoteAsync(articleId, isUpVote, user.Id);
+            await this.voteService.VoteAsync(input.ArticleId, input.IsUpVote, user.Id);
 
-            var votes = this.voteService.GetVotes(articleId);
+            var votes = this.voteService.GetVotes(input.ArticleId);
 
             return votes;
         }
