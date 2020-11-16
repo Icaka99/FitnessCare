@@ -1,6 +1,4 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-
+﻿
 <head>
 
     <meta charset="utf-8">
@@ -16,6 +14,67 @@
     <!--<link href="css/blog-post.css" rel="stylesheet">-->
 
 </head>
+
+@{
+    @using System.Linq;
+    var counter = 0;
+
+    async Task DisplayComments(int? parentId)
+    {
+        var comments = ((IEnumerable<dynamic>)this.Model.Comments).Where(x => x.ParentId == parentId);
+
+        
+        if (!comments.Any())
+        {
+            counter = 1;
+            return;
+        }
+        else
+        {
+
+            @foreach (var comment in comments)
+            {
+                if (comment.ParentId == null)
+                {
+                    counter = 0;
+                }
+                    <div class="rounded-lg border shadow-lg mt-4 mb-4 mr-4 py-3 px-3 offset-@counter">
+                        <div class="media mb-4">
+                            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+                            <div class="media-body">
+                                <h5 class="mt-0">@comment.UserUsername</h5>
+                                <h6 class="mt-0"><time datetime="@comment.CreatedOn.ToString("O")"></time></h6>
+                                @comment.Content
+                            </div>
+                        </div>
+                        <div class="offset-10">
+                            <button type="submit" class="btn btn-primary" onclick="showAddCommentForm(@comment.Id)">Reply</button>
+                        </div>
+                        <div>
+                            <form id="@comment.Id" asp-controller="Comment" asp-action="Create" method="post" style="display: none">
+                                <input type="hidden" name="ArticleId" value="@Model.Id" />
+                                <input type="hidden" name="ParentId" value="0" />
+                                <div>
+                                    <label for="Content"></label>
+                                    <textarea name="Content" id="Content" class="form-control"></textarea>
+                                </div>
+                                <hr />
+                                <div>
+                                    <input type="submit" class="btn btn-primary" value="Add reply" />
+                                </div>
+                            </form>
+                        </div>
+                    
+                    </div>
+
+                counter++;
+
+                await DisplayComments(comment.Id);
+
+            }
+        }
+    }
+}
 
 <body>
     <!-- Page Content -->
@@ -54,11 +113,11 @@
                 </div>
 
                 <div>
-                    <a href="/Blog/Delete?Id=@Model.Id" class="btn btn-danger" onclick="console.log("test")">Delete</a>
+                    <a href="/Blog/Delete?Id=@Model.Id" class="btn btn-danger" onclick="console.log(" test")">Delete</a>
                 </div>
 
                 <!-- Comments Form -->
-                <div class="card my-4">
+                <div class="card my-4 shadow-lg">
                     <h5 class="card-header">Leave a Comment:</h5>
                     <div class="card-body">
                         <form asp-controller="Comment" asp-action="Create" method="post">
@@ -67,74 +126,21 @@
                                 <label for="Content"></label>
                                 <textarea name="Content" id="Content" class="form-control" placeholder="Content" rows="3"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary offset-10" >AddComment</button>
+                            <button type="submit" class="btn btn-primary offset-10">AddComment</button>
                         </form>
                     </div>
                 </div>
 
                 <!-- Single Comment -->
-                @foreach (var comment in Model.Comments)
-                {
-                    <div class="media mb-4">
-                        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                        <div class="media-body">
-                            <h5 class="mt-0">@comment.UserUsername</h5>
-                            <h6 class="mt-0"><time datetime="@comment.CreatedOn.ToString("O")"></time></h6>
-                            @comment.Content
-                        </div>
-                    </div>
-                    <div class="offset-10">
-                        <button type="submit" class="btn btn-primary" onclick="showAddCommentForm(@comment.Id)">Reply</button>
-                    </div>
-                    <div>
-                        <form id="@comment.Id" asp-controller="Comment" asp-action="Create" method="post" style="display: none">
-                            <input type="hidden" name="ArticleId" value="@Model.Id" />
-                            <input type="hidden" name="ParentId" value="0"/>
-                            <div>
-                                <label for="Content"></label>
-                                <textarea name="Content" id="Content" class="form-control"></textarea>
-                            </div>
-                            <div>
-                                <input type="submit" class="btn btn-primary" value="Add reply" />
-                            </div>
-                            <hr />
-                        </form>
-                    </div>
-                }
+                @{await DisplayComments(null); }
 
-                <!-- Comment with nested comments -->
-                <div class="media mb-4">
-                    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                    <div class="media-body">
-                        <h5 class="mt-0">Commenter Name</h5>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-
-                        <div class="media mt-4">
-                            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                            <div class="media-body">
-                                <h5 class="mt-0">Commenter Name</h5>
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                            </div>
-                        </div>
-
-                        <div class="media mt-4">
-                            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                            <div class="media-body">
-                                <h5 class="mt-0">Commenter Name</h5>
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                            </div>
-                        </div>
-
-                    </div>
                 </div>
-
-            </div>
 
             <!-- Sidebar Widgets Column -->
             <div class="col-md-4">
 
                 <!-- Search Widget -->
-                <div class="card my-4">
+                <div class="card my-4 shadow-lg">
                     <h5 class="card-header">Search</h5>
                     <div class="card-body">
                         <div class="input-group">
@@ -147,7 +153,7 @@
                 </div>
 
                 <!-- Categories Widget -->
-                <div class="card my-4">
+                <div class="card my-4 shadow-lg">
                     <h5 class="card-header">Categories</h5>
                     <div class="card-body">
                         <div class="row">
@@ -182,7 +188,7 @@
                 </div>
 
                 <!-- Side Widget -->
-                <div class="card my-4">
+                <div class="card my-4 shadow-lg">
                     <h5 class="card-header">Side Widget</h5>
                     <div class="card-body">
                         You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
@@ -200,16 +206,12 @@
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
-</html>
 
 @section Scripts {
     <script>
         function showAddCommentForm(parentId) {
-            $("#AddCommentForm input[name='ParentId']").val(parentId);
+            $("#" + parentId + " input[name = 'ParentId']").val(parentId);
             $("#" + parentId).toggle();
-            $([document.documentElement, document.body]).animate({
-                scrollTop: $("#AddCommentForm").offset().top
-            }, 500);
         }
 
 
@@ -223,19 +225,5 @@
             xhr.open("POST", "/api/vote");
             xhr.setRequestHeader("Content-Type", "application/json");
             xhr.send(json);
-        };
-        @*function sendVote(ArticleId, IsUpVote) {
-            var json = { articleId: ArticleId, isUpVote: IsUpVote };
-
-            $.ajax({
-                url: "/api/vote",
-                type: "POST",
-                data: json,
-                contentType: "application/json",
-                success: function (data) {
-                    $("#votesCount").html(data.votesCount);
-                }
-            });
-        }*@
-    </script>
+        };</script>
 }

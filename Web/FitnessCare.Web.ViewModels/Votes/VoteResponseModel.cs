@@ -1,6 +1,6 @@
 ﻿namespace FitnessCare.Web.ViewModels.Votes
 {
-    public class VoteResponeModel
+    public class VoteResponseModel
     {
         public int VotesCount { get; set; }
     }
