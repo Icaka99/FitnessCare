@@ -40,7 +40,7 @@
                 CreatedOn = x.CreatedOn,
                 Id = x.Id,
                 UserUserName = x.User.UserName,
-                VotesCount = 0,
+                VotesCount = x.Votes.Count,
                 Comments = x.Comments,
             }).ToList();
         }
@@ -56,7 +56,7 @@
                     CreatedOn = x.CreatedOn,
                     Id = x.Id,
                     UserUserName = x.User.UserName,
-                    VotesCount = 0,
+                    VotesCount = x.Votes.Count,
                     Comments = x.Comments,
                 })
                 .Skip(skip);
@@ -76,7 +76,7 @@
                 Content = x.Content,
                 CreatedOn = x.CreatedOn,
                 Id = x.Id,
-                VotesCount = 0,
+                VotesCount = x.Votes.Count,
                 Comments = x.Comments,
             })
             .OrderByDescending(x => x.CreatedOn)
@@ -98,7 +98,7 @@
                     Id = x.Id,
                     UserUserName = x.User.UserName,
                     CreatedOn = x.CreatedOn,
-                    VotesCount = 0,
+                    VotesCount = x.Votes.Count,
                     Comments = x.Comments,
                 })
                 .FirstOrDefault();

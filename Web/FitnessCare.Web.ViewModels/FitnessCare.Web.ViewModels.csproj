@@ -28,5 +28,6 @@
     <Folder Include="Blog\" />
     <Folder Include="Votes\" />
     <Folder Include="Comments\" />
+    <Folder Include="Forum\" />
   </ItemGroup>
 </Project>
