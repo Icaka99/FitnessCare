@@ -18,7 +18,9 @@
 
         public IActionResult Forum()
         {
-            return this.View();
+            var categories = this.categoryService.GetAll();
+
+            return this.View(categories);
         }
 
         [Authorize]
@@ -38,7 +40,7 @@
 
             await this.categoryService.CreateAsync(input);
 
-            return this.Redirect("Forum/Forum");
+            return this.Redirect("/Forum/Forum");
         }
     }
 }

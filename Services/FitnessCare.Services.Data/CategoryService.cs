@@ -1,5 +1,6 @@
 ﻿namespace FitnessCare.Services.Data
 {
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -35,9 +36,33 @@
             this.db.SaveChanges();
         }
 
+        public IEnumerable<CategoryViewModel> GetAll()
+        {
+            return this.db.Categories.Select(x => new CategoryViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Description = x.Description,
+                ImageURL = x.ImageURL,
+            }).ToList();
+        }
+
         public int GetCount()
         {
             return this.db.Categories.Count();
+        }
+
+        public CategoryViewModel GetDetails(int id)
+        {
+            var category = this.db.Categories.Where(x => x.Id == id)
+                .Select(x => new CategoryViewModel
+                {
+                    Name = x.Name,
+                    Description = x.Description,
+                    ImageURL = x.ImageURL,
+                })
+                .FirstOrDefault();
+            return category;
         }
     }
 }

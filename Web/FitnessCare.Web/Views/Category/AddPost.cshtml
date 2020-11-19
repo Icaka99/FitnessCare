@@ -1,0 +1,24 @@
+﻿@using FitnessCare.Web.ViewModels.Forum
+@model AddPostInputModel
+<section class="py-5">
+    <div class="container">
+        <h1 style="margin: 2%; text-align: center;">Add Post</h1>
+        <div style="padding: 5%;">
+
+            <form method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Title"></label>
+                    <input asp-for="Title" class="form-control" name="Title" placeholder="Title">
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Content"></label>
+                    <textarea rows="2" asp-for="Content" class="form-control" name="Content" placeholder="Content"></textarea>
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary text-uppercase">Submit</button>
+            </form>
+        </div>
+    </div>
+</section>

@@ -5,16 +5,16 @@
 
     using FitnessCare.Web.ViewModels.Forum;
 
-    public interface ICategoryService
+    public interface IPostService
     {
         int GetCount();
 
-        Task CreateAsync(AddCategoryInputModel input);
+        Task CreateAsync(AddPostInputModel input);
 
         void Delete(int id);
 
-        CategoryViewModel GetDetails(int id);
+        PostViewModel GetDetails(int id);
 
-        IEnumerable<CategoryViewModel> GetAll();
+        IEnumerable<PostViewModel> GetAll();
     }
 }

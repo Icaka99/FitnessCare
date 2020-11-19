@@ -9,8 +9,6 @@
     {
         int GetCount();
 
-        IEnumerable<ArticleViewModel> GetAll();
-
         IEnumerable<ArticleViewModel> GetArticles(int? take, int skip);
 
         IEnumerable<ArticleViewModel> GetAllOrderedArticles();

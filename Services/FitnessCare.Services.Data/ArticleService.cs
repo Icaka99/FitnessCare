@@ -31,20 +31,6 @@
             await this.db.SaveChangesAsync();
         }
 
-        public IEnumerable<ArticleViewModel> GetAll()
-        {
-            return this.db.Articles.Select(x => new ArticleViewModel
-            {
-                Title = x.Title,
-                Content = x.Content,
-                CreatedOn = x.CreatedOn,
-                Id = x.Id,
-                UserUserName = x.User.UserName,
-                VotesCount = x.Votes.Count,
-                Comments = x.Comments,
-            }).ToList();
-        }
-
         public IEnumerable<ArticleViewModel> GetArticles(int? take = null, int skip = 0)
         {
             var query = this.db.Articles
