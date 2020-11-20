@@ -1,0 +1,80 @@
+﻿@model FitnessCare.Web.ViewModels.Forum.PostViewModel
+
+<div class="container mt-6 mb-6 border rounded-lg">
+    <div class="d-flex justify-content-center row">
+        <div class="d-flex flex-column col-md-12">
+            <div class="d-flex flex-row align-items-center text-left comment-top p-2 bg-white border-bottom px-4">
+                <div class="profile-image"><img class="rounded-circle" src="https://i.imgur.com/t9toMAQ.jpg" width="70"></div>
+                <div class="d-flex flex-column ml-3">
+                    <div class="d-flex flex-row post-title">
+                        <h5>@Model.Title</h5><span class="ml-2">(@Model.UserUserName)</span>
+                    </div>
+                    <div class="d-flex flex-row align-items-center align-content-center post-title"><span class="mr-2 comments">Comments: @Model.CommentsCount</span><time datetime="@Model.CreatedOn.ToString("O")"></time></div>
+                    <div class="comment-text-sm">
+                        <hr />
+                        <span>
+                            @Model.Content
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comment section -->
+            <div class="coment-bottom bg-white p-2 px-4">
+
+                <!-- Comment section -->
+                <div class="d-flex flex-row add-comment-section mt-4 mb-4"><img class="img-fluid img-responsive rounded-circle mr-2" src="https://i.imgur.com/qdiP4DB.jpg" width="38"><input type="text" class="form-control mr-3" placeholder="Add comment"><button class="btn btn-primary" type="button">Comment</button></div>
+
+                <!-- Single comment -->
+
+                @foreach (var comment in Model.Comments)
+                {
+                    <div class="commented-section mt-2 border rounded-lg">
+                        <div class="d-flex flex-row align-items-center commented-user">
+                            <img class="img-fluid img-responsive rounded-circle mr-2" src="https://i.imgur.com/qdiP4DB.jpg" width="50">
+                            <h5 class="mr-2">@comment.UserUsername</h5><span class="dot mb-1"></span><span class="mb-1 ml-2"><time datetime="@comment.CreatedOn.ToString("O")"></time></span>
+                        </div>
+                        <div class="comment-text-sm"><span>@comment.Content</span></div>
+                        <div class="reply-section">
+                            <button class="btn btn-primary ml-2 mt-1" onclick="showAddCommentForm(@comment.Id)">Reply</button>
+                        </div>
+                        <div id="@comment.Id" style="display: none">
+                            <form asp-controller="Comment" asp-action="Create" method="post">
+                                <input type="hidden" name="PostId" value="@Model.Id" />
+                                <div>
+                                    <label for="Content"></label>
+                                    <textarea name="Content" id="Content" class="form-control"></textarea>
+                                </div>
+                                <div>
+                                    <input type="submit" class="btn btn-primary" value="Add comment" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                }
+                <!-- Single comment -->
+                <div class="commented-section mt-2">
+                    <div class="d-flex flex-row align-items-center commented-user">
+                        <h5 class="mr-2">Makhaya andrew</h5><span class="dot mb-1"></span><span class="mb-1 ml-2">10 hours ago</span>
+                    </div>
+                    <div class="comment-text-sm"><span>Nunc sed id semper risus in hendrerit gravida rutrum. Non odio euismod lacinia at quis risus sed. Commodo ullamcorper a lacus vestibulum sed arcu non odio euismod. Enim facilisis gravida neque convallis a. In mollis nunc sed id. Adipiscing elit pellentesque habitant morbi tristique senectus et netus. Ultrices mi tempus imperdiet nulla malesuada pellentesque.</span></div>
+                    <div class="reply-section">
+                        <div class="d-flex flex-row align-items-center voting-icons">
+                            <i class="fa fa-sort-up fa-2x mt-3 hit-voting"></i><i class="fa fa-sort-down fa-2x mb-3 hit-voting"></i><span class="ml-2">25</span><span class="dot ml-2"></span>
+                            <h6 class="ml-2 mt-1">Reply</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function showAddCommentForm(parentId) {
+            $("#" + parentId + " input[name = 'ParentId']").val(parentId);
+            $("#" + parentId).toggle();
+        }
+    </script>
+}

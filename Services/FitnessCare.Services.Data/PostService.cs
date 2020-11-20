@@ -37,9 +37,19 @@
             this.db.SaveChanges();
         }
 
-        public IEnumerable<PostViewModel> GetAll()
+        public IEnumerable<PostViewModel> GetAllById(int id)
         {
-            throw new System.NotImplementedException();
+                return this.db.Posts.Where(x => x.CategoryId == id)
+                .Select(x => new PostViewModel
+            {
+                Id = x.Id,
+                Title = x.Title,
+                Content = x.Content,
+                CommentsCount = x.Comments.Count,
+                CreatedOn = x.CreatedOn,
+                UserUserName = x.User.UserName,
+                Comments = x.Comments,
+            }).ToList();
         }
 
         public int GetCount()
@@ -49,7 +59,19 @@
 
         public PostViewModel GetDetails(int id)
         {
-            throw new System.NotImplementedException();
+            var post = this.db.Posts.Where(x => x.Id == id)
+                .Select(x => new PostViewModel
+                {
+                    Id = x.Id,
+                    Title = x.Title,
+                    Content = x.Content,
+                    CreatedOn = x.CreatedOn,
+                    UserUserName = x.User.UserName,
+                    CommentsCount = x.Comments.Count,
+                    Comments = x.Comments,
+                })
+                .FirstOrDefault();
+            return post;
         }
     }
 }

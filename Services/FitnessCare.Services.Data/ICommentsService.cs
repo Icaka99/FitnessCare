@@ -8,6 +8,8 @@
     {
         Task Create(CreateCommentInputModel input, int? parentId = null);
 
-        bool IsInPost(int commentId, int articleId);
+        bool IsInArticle(int commentId, int articleId);
+
+        bool IsInPost(int commentId, int postId);
     }
 }

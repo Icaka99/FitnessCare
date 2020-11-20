@@ -30,11 +30,19 @@
 
             await this.db.Comments.AddAsync(comment);
             this.db.Users.FirstOrDefault(x => x.Id == input.UserId).Comments.Add(comment);
-            this.db.Articles.FirstOrDefault(x => x.Id == input.ArticleId).Comments.Add(comment);
+            if (input.ArticleId == 0)
+            {
+                this.db.Posts.FirstOrDefault(x => x.Id == input.PostId).Comments.Add(comment);
+            }
+            else
+            {
+                this.db.Articles.FirstOrDefault(x => x.Id == input.ArticleId).Comments.Add(comment);
+            }
+
             await this.db.SaveChangesAsync();
         }
 
-        public bool IsInPost(int commentId, int articleId)
+        public bool IsInArticle(int commentId, int articleId)
         {
             var commentArticleId = this.db.Articles
                 .Where(x => x.Comments.FirstOrDefault(x => x.Id == commentId).Id == commentId)
@@ -42,6 +50,16 @@
                 .FirstOrDefault();
 
             return commentArticleId == articleId;
+        }
+
+        public bool IsInPost(int commentId, int postId)
+        {
+            var commentPostId = this.db.Posts
+                .Where(x => x.Comments.FirstOrDefault(x => x.Id == commentId).Id == commentId)
+                .Select(x => x.Id)
+                .FirstOrDefault();
+
+            return commentPostId == postId;
         }
     }
 }

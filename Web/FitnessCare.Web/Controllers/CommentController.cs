@@ -29,22 +29,44 @@
 
             var parentId = input.ParentId == 0 ? (int?)null : input.ParentId;
 
-            if (parentId.HasValue)
+            if (input.PostId == 0)
             {
-                if (!this.commentsService.IsInPost(parentId.Value, input.ArticleId))
+                if (parentId.HasValue)
                 {
-                    return this.BadRequest();
+                    if (!this.commentsService.IsInArticle(parentId.Value, input.ArticleId))
+                    {
+                        return this.BadRequest();
+                    }
                 }
-            }
 
-            if (input.Content == null)
-            {
+                if (input.Content == null)
+                {
+                    return this.RedirectToAction("Article", "Blog", new { id = input.ArticleId });
+                }
+
+                await this.commentsService.Create(input, parentId);
+
                 return this.RedirectToAction("Article", "Blog", new { id = input.ArticleId });
             }
+            else
+            {
+                if (parentId.HasValue)
+                {
+                    if (!this.commentsService.IsInPost(parentId.Value, input.PostId))
+                    {
+                        return this.BadRequest();
+                    }
+                }
 
-            await this.commentsService.Create(input, parentId);
+                if (input.Content == null)
+                {
+                    return this.RedirectToAction("Post", "Posts", new { id = input.PostId });
+                }
 
-            return this.RedirectToAction("Article", "Blog", new { id = input.ArticleId });
+                await this.commentsService.Create(input, parentId);
+
+                return this.RedirectToAction("Post", "Posts", new { id = input.PostId });
+            }
         }
     }
 }

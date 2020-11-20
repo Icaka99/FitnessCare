@@ -15,6 +15,6 @@
 
         PostViewModel GetDetails(int id);
 
-        IEnumerable<PostViewModel> GetAll();
+        IEnumerable<PostViewModel> GetAllById(int id);
     }
 }

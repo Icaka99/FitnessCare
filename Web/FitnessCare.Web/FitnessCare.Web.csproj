@@ -44,5 +44,6 @@
     <Folder Include="Views\Forum\" />
     <Folder Include="Views\Blog\" />
     <Folder Include="Views\Category\" />
+    <Folder Include="Views\Posts\" />
   </ItemGroup>
 </Project>

@@ -42,7 +42,19 @@
                         <div class="media mb-4">
                             <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
                             <div class="media-body">
-                                <h5 class="mt-0">@comment.UserUsername</h5>
+                                <h5 class="mt-0">
+                                    @if (parentId != null)
+                                    {
+                                        @("Reply to -> " + comment.Parent.UserUsername)
+                                    <h6>
+                                        @("From: " + comment.UserUsername)
+                                    </h6>
+                                    }
+                                    else
+                                    {
+                                        @comment.UserUsername
+                                    }
+                                </h5>
                                 <h6 class="mt-0"><time datetime="@comment.CreatedOn.ToString("O")"></time></h6>
                                 @comment.Content
                             </div>

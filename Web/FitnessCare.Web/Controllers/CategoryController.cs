@@ -20,9 +20,11 @@
             this.userManager = userManager;
         }
 
-        public IActionResult Category()
+        public IActionResult Category(int id)
         {
-            return this.View();
+            var categories = this.postService.GetAllById(id);
+
+            return this.View(categories);
         }
 
         [Authorize]

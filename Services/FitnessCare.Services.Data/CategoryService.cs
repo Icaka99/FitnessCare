@@ -38,7 +38,8 @@
 
         public IEnumerable<CategoryViewModel> GetAll()
         {
-            return this.db.Categories.Select(x => new CategoryViewModel
+            return this.db.Categories
+                .Select(x => new CategoryViewModel
             {
                 Id = x.Id,
                 Name = x.Name,
