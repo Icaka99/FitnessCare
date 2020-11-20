@@ -16,6 +16,11 @@
         {
             var post = this.postService.GetDetails(id);
 
+            if (post == null)
+            {
+                return this.NotFound();
+            }
+
             return this.View(post);
         }
     }

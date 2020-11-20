@@ -1,4 +1,56 @@
-﻿@model FitnessCare.Web.ViewModels.Forum.PostViewModel
+﻿@{
+    @using System.Linq;
+    var counter = 0;
+
+    async Task DisplayComments(int? parentId)
+    {
+        var comments = ((IEnumerable<dynamic>)this.Model.Comments).Where(x => x.ParentId == parentId);
+
+        if (!comments.Any())
+        {
+            counter = 1;
+            return;
+        }
+        else
+        {
+            @foreach (var comment in comments)
+            {
+                if (comment.ParentId == null)
+                {
+                    counter = 0;
+                }
+
+                <div class="commented-section mt-2 border rounded-lg offset-@counter">
+                    <div class="d-flex flex-row align-items-center commented-user">
+                        <img class="img-fluid img-responsive rounded-circle mr-2" src="https://i.imgur.com/qdiP4DB.jpg" width="50">
+                        <h5 class="mr-2">@comment.UserUsername</h5><span class="dot mb-1"></span><span class="mb-1 ml-2"><time datetime="@comment.CreatedOn.ToString("O")"></time></span>
+                    </div>
+                    <div class="comment-text-sm"><span>@comment.Content</span></div>
+                    <div class="reply-section">
+                        <button class="btn btn-primary ml-2 mt-1" onclick="showAddCommentForm(@comment.Id)">Reply</button>
+                    </div>
+                    <div>
+                        <form id="@comment.Id" asp-controller="Comment" asp-action="Create" method="post" style="display: none">
+                            <input type="hidden" name="PostId" value="@Model.Id" />
+                            <input type="hidden" name="ParentId" value="0" />
+                            <div>
+                                <label for="Content"></label>
+                                <textarea name="Content" id="Content" class="form-control"></textarea>
+                            </div>
+                            <div>
+                                <input type="submit" class="btn btn-primary" value="Add comment" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                counter++;
+
+                await DisplayComments(comment.Id);
+            }
+        }
+    }
+}
 
 <div class="container mt-6 mb-6 border rounded-lg">
     <div class="d-flex justify-content-center row">
@@ -23,35 +75,22 @@
             <div class="coment-bottom bg-white p-2 px-4">
 
                 <!-- Comment section -->
-                <div class="d-flex flex-row add-comment-section mt-4 mb-4"><img class="img-fluid img-responsive rounded-circle mr-2" src="https://i.imgur.com/qdiP4DB.jpg" width="38"><input type="text" class="form-control mr-3" placeholder="Add comment"><button class="btn btn-primary" type="button">Comment</button></div>
+                <div class="d-flex flex-row add-comment-section mt-4 mb-4">
+                    <img class="img-fluid img-responsive rounded-circle mr-2" src="https://i.imgur.com/qdiP4DB.jpg" width="38"/>
+                    <form asp-controller="Comment" asp-action="Create" method="post" form-control>
+                        <input type="hidden" name="PostId" value="@Model.Id" />
+                        <div class="form-group">
+                            <label for="Content"></label>
+                            <textarea name="Content" id="Content" class="form-control" placeholder="Add a comment" rows="3"></textarea>
+                        </div>
+                        <button class="btn btn-primary" type="submit">
+                            Comment
+                        </button>
+                    </form>
+                </div>
 
+                @{await DisplayComments(null); }
                 <!-- Single comment -->
-
-                @foreach (var comment in Model.Comments)
-                {
-                    <div class="commented-section mt-2 border rounded-lg">
-                        <div class="d-flex flex-row align-items-center commented-user">
-                            <img class="img-fluid img-responsive rounded-circle mr-2" src="https://i.imgur.com/qdiP4DB.jpg" width="50">
-                            <h5 class="mr-2">@comment.UserUsername</h5><span class="dot mb-1"></span><span class="mb-1 ml-2"><time datetime="@comment.CreatedOn.ToString("O")"></time></span>
-                        </div>
-                        <div class="comment-text-sm"><span>@comment.Content</span></div>
-                        <div class="reply-section">
-                            <button class="btn btn-primary ml-2 mt-1" onclick="showAddCommentForm(@comment.Id)">Reply</button>
-                        </div>
-                        <div id="@comment.Id" style="display: none">
-                            <form asp-controller="Comment" asp-action="Create" method="post">
-                                <input type="hidden" name="PostId" value="@Model.Id" />
-                                <div>
-                                    <label for="Content"></label>
-                                    <textarea name="Content" id="Content" class="form-control"></textarea>
-                                </div>
-                                <div>
-                                    <input type="submit" class="btn btn-primary" value="Add comment" />
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                }
                 <!-- Single comment -->
                 <div class="commented-section mt-2">
                     <div class="d-flex flex-row align-items-center commented-user">
@@ -71,10 +110,8 @@
 </div>
 
 @section Scripts {
-    <script>
-        function showAddCommentForm(parentId) {
+    <script>function showAddCommentForm(parentId) {
             $("#" + parentId + " input[name = 'ParentId']").val(parentId);
             $("#" + parentId).toggle();
-        }
-    </script>
+        };</script>
 }
