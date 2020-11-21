@@ -1,0 +1,40 @@
+﻿@model PagingViewModel
+
+<nav aria-label="...">
+    <ul class="pagination justify-content-center">
+        <li class="page-item @if (!Model.HasPreviousPage) { <text>disabled</text> } ">
+            <a class="page-link" asp-action="Blog" asp-route-id="@Model.PreviousPageNumber">Previous</a>
+        </li>
+        @if (Model.PageNumber >= 4)
+        {
+            <li class="page-item"><a class="page-link" asp-action="Blog" asp-route-id="1">1</a></li>
+        }
+        @for (int i = Model.PageNumber - 2; i < Model.PageNumber; i++)
+        {
+            if (i > 0)
+            {
+                <li class="page-item"><a class="page-link" asp-action="Blog" asp-route-id="@i">@i</a></li>
+            }
+        }
+        <li class="page-item active" aria-current="page">
+            <span class="page-link">
+                @Model.PageNumber
+                <span class="sr-only">(current)</span>
+            </span>
+        </li>
+        @for (int i = Model.PageNumber + 1; i < Model.PageNumber + 3; i++)
+        {
+            if (i <= Model.PagesCount)
+            {
+                <li class="page-item"><a class="page-link" asp-action="Blog" asp-route-id="@i">@i</a></li>
+            }
+        }
+        @if (Model.PageNumber <= Model.PagesCount - 3)
+        {
+            <li class="page-item"><a class="page-link" asp-action="Blog" asp-route-id="@Model.PagesCount">@Model.PagesCount</a></li>
+        }
+        <li class="page-item @if (!Model.HasNextPage) { <text>disabled</text> } ">
+            <a class="page-link" asp-action="Blog" asp-route-id="@Model.NextPageNumber">Next</a>
+        </li>
+    </ul>
+</nav>

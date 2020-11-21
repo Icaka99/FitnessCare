@@ -9,7 +9,7 @@
     {
         int GetCount();
 
-        IEnumerable<ArticleViewModel> GetArticles(int? take, int skip);
+        IEnumerable<ArticleViewModel> GetArticles(int page, int itemsPerPage = 1);
 
         IEnumerable<ArticleViewModel> GetAllOrderedArticles();
 

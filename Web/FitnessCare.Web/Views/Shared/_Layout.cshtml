@@ -22,7 +22,7 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="/Blog/Blog?page=@GlobalConstants.DefaultBlogPage">Blog</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="Blog" asp-route-id="@GlobalConstants.DefaultBlogPage">Blog</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Forum" asp-action="Forum">Forum</a>

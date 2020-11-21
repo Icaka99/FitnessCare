@@ -1,4 +1,4 @@
-﻿ namespace FitnessCare.Web.Controllers
+﻿  namespace FitnessCare.Web.Controllers
 {
     using System;
     using System.Threading.Tasks;
@@ -23,25 +23,24 @@
             this.userManager = userManager;
         }
 
-        public IActionResult Blog(int page)
+        public IActionResult Blog(int id)
         {
-            var articles = this.articleService.GetArticles(ItemsPerPage, (page - 1) * ItemsPerPage);
-            var orderedArticles = this.articleService.GetAllOrderedArticles();
+            if (id == 0)
+            {
+                id = 1;
+            }
 
-            var count = this.articleService.GetCount();
+            var articles = this.articleService.GetArticles(id, 5);
+            var orderedArticles = this.articleService.GetAllOrderedArticles();
 
             var model = new ArticlesListViewModel
             {
+                ItemsPerPage = ItemsPerPage,
+                ArticlesCount = this.articleService.GetCount(),
                 Articles = articles,
                 OrderedArticles = orderedArticles,
-                PagesCount = (int)Math.Ceiling((double)count / ItemsPerPage),
-                CurrentPage = page,
+                PageNumber = id,
             };
-
-            if (model.PagesCount == 0)
-            {
-                model.PagesCount = 1;
-            }
 
             return this.View(model);
         }

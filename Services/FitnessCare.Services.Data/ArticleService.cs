@@ -31,10 +31,11 @@
             await this.db.SaveChangesAsync();
         }
 
-        public IEnumerable<ArticleViewModel> GetArticles(int? take = null, int skip = 0)
+        public IEnumerable<ArticleViewModel> GetArticles(int page, int itemsPerPage = 1)
         {
-            var query = this.db.Articles
+            var articles = this.db.Articles
                 .OrderByDescending(x => x.CreatedOn)
+                .Skip((page - 1) * itemsPerPage).Take(itemsPerPage)
                 .Select(x => new ArticleViewModel
                 {
                     Title = x.Title,
@@ -44,14 +45,9 @@
                     UserUserName = x.User.UserName,
                     VotesCount = x.Votes.Count,
                     Comments = x.Comments,
-                })
-                .Skip(skip);
-            if (take.HasValue)
-            {
-                query = query.Take(take.Value);
-            }
+                }).ToList();
 
-            return query.ToList();
+            return articles.ToList();
         }
 
         public IEnumerable<ArticleViewModel> GetAllOrderedArticles()
