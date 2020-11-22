@@ -1,5 +1,6 @@
 ﻿namespace FitnessCare.Web.Controllers
 {
+    using System;
     using System.Diagnostics;
 
     using FitnessCare.Web.ViewModels;
@@ -14,6 +15,11 @@
         }
 
         public IActionResult Privacy()
+        {
+            return this.View();
+        }
+
+        public IActionResult StatusCodeError(int errorCode)
         {
             return this.View();
         }
