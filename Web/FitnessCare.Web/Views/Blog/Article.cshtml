@@ -212,6 +212,8 @@
         </div>
         <!-- /.row -->
 
+        <form method="post" id="afToken"></form>
+
     </div>
     Bootstrap core JavaScript
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -229,6 +231,7 @@
 
         function sendVote(ArticleId, IsUpVote) {
             var json = JSON.stringify({ articleId: ArticleId, isUpVote: IsUpVote });
+            var token = $('#afToken input[name=__RequestVerificationToken]').val();
             xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function (data) {
                 console.log(data);
@@ -236,6 +239,7 @@
             }
             xhr.open("POST", "/api/vote");
             xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.setRequestHeader("RequestVerificationToken", token);
             xhr.send(json);
         };</script>
 }

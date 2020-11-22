@@ -23,7 +23,6 @@
         }
 
         [HttpPost]
-        [IgnoreAntiforgeryToken]
         public async Task<ActionResult<int>> Post(VoteInputModel input)
         {
             var user = await this.userManager.GetUserAsync(this.User);

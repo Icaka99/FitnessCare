@@ -25,6 +25,7 @@
     </PackageReference>
     <PackageReference Include="bootstrap" Version="4.5.3" />
     <PackageReference Include="HtmlSanitizer" Version="5.0.355" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
