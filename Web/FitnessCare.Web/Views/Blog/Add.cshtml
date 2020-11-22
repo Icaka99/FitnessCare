@@ -1,4 +1,5 @@
-﻿@using FitnessCare.Web.ViewModels.Blog
+﻿@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+@using FitnessCare.Web.ViewModels.Blog
 @model AddArticleInputModel
 <section class="py-5">
     <div class="container">
@@ -20,8 +21,21 @@
                     <textarea rows="3" asp-for="Content" class="form-control" placeholder="Content"></textarea>
                     <span asp-validation-for="Content" class="text-danger"></span>
                 </div>
+                <input type="hidden" id="RecaptchaValue" name="RecaptchaValue" />
                 <button type="submit" class="btn btn-primary text-uppercase">Submit</button>
             </form>
         </div>
     </div>
 </section>
+
+@section Scripts
+{
+    <script src="https://www.google.com/recaptcha/api.js?render=@this.Configuration["GoogleReCaptcha:Key"]"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@this.Configuration["GoogleReCaptcha:Key"]', { action: 'contact_form' }).then(function (token) {
+                document.getElementById("RecaptchaValue").value = token;
+            });
+        });
+    </script>
+}

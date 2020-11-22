@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\FitnessCare.Data.Models\FitnessCare.Data.Models.csproj" />
     <ProjectReference Include="..\..\Services\FitnessCare.Services.Mapping\FitnessCare.Services.Mapping.csproj" />
+    <ProjectReference Include="..\FitnessCare.Web.Infrastructure\FitnessCare.Web.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

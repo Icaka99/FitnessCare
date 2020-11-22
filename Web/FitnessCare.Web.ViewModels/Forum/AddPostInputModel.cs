@@ -2,6 +2,8 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using FitnessCare.Web.Infrastructure;
+
     public class AddPostInputModel
     {
         [Required]
@@ -18,5 +20,8 @@
         public string UserId { get; set; }
 
         public int CategoryId { get; set; }
+
+        [GoogleReCaptchaValidation]
+        public string RecaptchaValue { get; set; }
     }
 }

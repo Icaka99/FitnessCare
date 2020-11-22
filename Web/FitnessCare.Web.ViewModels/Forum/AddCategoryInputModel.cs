@@ -2,6 +2,8 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using FitnessCare.Web.Infrastructure;
+
     public class AddCategoryInputModel
     {
         [MaxLength(80)]
@@ -11,5 +13,8 @@
         public string Description { get; set; }
 
         public string ImageURL { get; set; }
+
+        [GoogleReCaptchaValidation]
+        public string RecaptchaValue { get; set; }
     }
 }

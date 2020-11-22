@@ -48,7 +48,7 @@
             input.UserId = user.Id;
 
             await this.postService.CreateAsync(input);
-            return this.Redirect("/Category/Category");
+            return this.Redirect($"/Category/Category?Id={input.CategoryId}");
         }
     }
 }
