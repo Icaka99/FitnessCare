@@ -30,5 +30,6 @@
     <Folder Include="Votes\" />
     <Folder Include="Comments\" />
     <Folder Include="Forum\" />
+    <Folder Include="Calculator\" />
   </ItemGroup>
 </Project>

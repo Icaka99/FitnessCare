@@ -35,7 +35,7 @@
         {
             if (!this.ModelState.IsValid)
             {
-                return this.View();
+                return this.View(input);
             }
 
             await this.categoryService.CreateAsync(input);
