@@ -47,6 +47,7 @@
     <Folder Include="Views\Category\" />
     <Folder Include="Views\Posts\" />
     <Folder Include="Views\Calculator\" />
+    <Folder Include="Views\Contacts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="wwwroot\css\error.css">
