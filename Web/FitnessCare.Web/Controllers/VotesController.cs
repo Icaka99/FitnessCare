@@ -5,18 +5,17 @@
     using FitnessCare.Data.Models;
     using FitnessCare.Services.Data;
     using FitnessCare.Web.ViewModels.Votes;
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
     [ApiController]
     [Route("api/[controller]")]
-    public class VoteController : ControllerBase
+    public class VotesController : ControllerBase
     {
         private readonly IVoteService voteService;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public VoteController(IVoteService voteService, UserManager<ApplicationUser> userManager)
+        public VotesController(IVoteService voteService, UserManager<ApplicationUser> userManager)
         {
             this.voteService = voteService;
             this.userManager = userManager;

@@ -40,7 +40,7 @@
                             <p class="card-text">@category.ShortDescription</p>
                         </div>
                         <div class="card-footer">
-                            <a href="/Category/Category?Id=@category.Id" class="btn btn-primary">Read More &rarr;</a>
+                            <a asp-controller="Categories" asp-action="Category" asp-route-id="@category.Id" class="btn btn-primary">Read More &rarr;</a>
                         </div>
                     </div>
                 </div>

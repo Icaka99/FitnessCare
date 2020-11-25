@@ -15,7 +15,7 @@
             this.db = db;
         }
 
-        public async Task CreateAsync(ContactFormViewModel model, string ip)
+        public async Task CreateAsync(ContactFormInputModel model, string ip)
         {
             var contactForm = new ContactForm
             {

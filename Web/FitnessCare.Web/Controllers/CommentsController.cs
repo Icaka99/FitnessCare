@@ -8,12 +8,12 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
-    public class CommentController : BaseController
+    public class CommentsController : BaseController
     {
         private readonly ICommentsService commentsService;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public CommentController(ICommentsService commentsService, UserManager<ApplicationUser> userManager)
+        public CommentsController(ICommentsService commentsService, UserManager<ApplicationUser> userManager)
         {
             this.commentsService = commentsService;
             this.userManager = userManager;
@@ -41,12 +41,12 @@
 
                 if (input.Content == null)
                 {
-                    return this.RedirectToAction("Article", "Blog", new { id = input.ArticleId });
+                    return this.RedirectToAction("Article", "Articles", new { id = input.ArticleId });
                 }
 
                 await this.commentsService.Create(input, parentId);
 
-                return this.RedirectToAction("Article", "Blog", new { id = input.ArticleId });
+                return this.RedirectToAction("Article", "Articles", new { id = input.ArticleId });
             }
             else
             {

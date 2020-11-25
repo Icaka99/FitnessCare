@@ -80,7 +80,7 @@
                     Id = x.Id,
                     UserUserName = x.User.UserName,
                     CreatedOn = x.CreatedOn,
-                    VotesCount = x.Votes.Count,
+                    VotesCount = this.db.Votes.Where(x => x.ArticleId == id).Sum(x => (int)x.Type),
                     Comments = x.Comments,
                 })
                 .FirstOrDefault();

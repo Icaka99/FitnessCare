@@ -63,7 +63,7 @@
                             <button type="submit" class="btn btn-primary" onclick="showAddCommentForm(@comment.Id)">Reply</button>
                         </div>
                         <div>
-                            <form id="@comment.Id" asp-controller="Comment" asp-action="Create" method="post" style="display: none">
+                            <form id="@comment.Id" asp-controller="Comments" asp-action="Create" method="post" style="display: none">
                                 <input type="hidden" name="ArticleId" value="@Model.Id" />
                                 <input type="hidden" name="ParentId" value="0" />
                                 <div>
@@ -125,14 +125,14 @@
                 </div>
 
                 <div>
-                    <a href="/Blog/Delete?Id=@Model.Id" class="btn btn-danger">Delete</a>
+                    <a asp-controller="Articles" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
                 </div>
 
                 <!-- Comments Form -->
                 <div class="card my-4 shadow-lg">
                     <h5 class="card-header">Leave a Comment:</h5>
                     <div class="card-body">
-                        <form asp-controller="Comment" asp-action="Create" method="post">
+                        <form asp-controller="Comments" asp-action="Create" method="post">
                             <input type="hidden" name="ArticleId" value="@Model.Id" />
                             <div class="form-group">
                                 <label for="Content"></label>
@@ -237,7 +237,7 @@
                 console.log(data);
                 $("#votesCount").html(data.currentTarget.responseText);
             }
-            xhr.open("POST", "/api/vote");
+            xhr.open("POST", "/api/votes");
             xhr.setRequestHeader("Content-Type", "application/json");
             xhr.setRequestHeader("RequestVerificationToken", token);
             xhr.send(json);

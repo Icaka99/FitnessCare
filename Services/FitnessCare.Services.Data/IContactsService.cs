@@ -6,6 +6,6 @@
 
     public interface IContactsService
     {
-        Task CreateAsync(ContactFormViewModel model, string ip);
+        Task CreateAsync(ContactFormInputModel model, string ip);
     }
 }

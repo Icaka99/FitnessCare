@@ -9,12 +9,12 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
-    public class CategoryController : BaseController
+    public class CategoriesController : BaseController
     {
         private readonly IPostService postService;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public CategoryController(IPostService postService, UserManager<ApplicationUser> userManager)
+        public CategoriesController(IPostService postService, UserManager<ApplicationUser> userManager)
         {
             this.postService = postService;
             this.userManager = userManager;
@@ -48,7 +48,7 @@
             input.UserId = user.Id;
 
             await this.postService.CreateAsync(input);
-            return this.Redirect($"/Category/Category?Id={input.CategoryId}");
+            return this.Redirect($"/Categories/Category?Id={input.CategoryId}");
         }
     }
 }

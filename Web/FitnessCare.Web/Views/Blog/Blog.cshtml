@@ -37,7 +37,7 @@
                         <div class="card-body">
                             <h2 class="card-title">@article.Title</h2>
                             <p class="card-text">@article.ShortContent</p>
-                            <a href="/Blog/Article?Id=@article.Id" class="btn btn-primary">Read More &rarr;</a>
+                            <a asp-controller="Articles" asp-action="Article" asp-route-id="@article.Id" class="btn btn-primary">Read More &rarr;</a>
                         </div>
                         <div class="card-footer text-muted">
                             Posted on <time datetime="@article.CreatedOn.ToString("O")"></time> by
@@ -60,7 +60,7 @@
                         {
                             <tr>
                                 <th scope="row"><time datetime="@article.CreatedOn.ToString("O")"></time></th>
-                                <td><span>"<a href="/Blog/Article?Id=@article.Id">@article.Title</a>" - @article.CreatedOn.Year</span></td>
+                                <td><span>"<a asp-controller="Articles" asp-action="Article" asp-route-id="@article.Id">@article.Title</a>" - @article.CreatedOn.Year</span></td>
                             </tr>
                         }
                     </tbody>

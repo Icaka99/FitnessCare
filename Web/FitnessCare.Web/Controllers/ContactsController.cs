@@ -25,7 +25,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Contact(ContactFormViewModel model)
+        public async Task<IActionResult> Contact(ContactFormInputModel model)
         {
             if (!this.ModelState.IsValid)
             {
@@ -42,7 +42,7 @@
             return this.Redirect("/Home/Index");
         }
 
-        private async Task SendEmail(ContactFormViewModel model)
+        private async Task SendEmail(ContactFormInputModel model)
         {
             await this.emailSender.SendEmailAsync(
                             model.Email,

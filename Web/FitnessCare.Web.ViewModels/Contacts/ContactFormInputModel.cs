@@ -4,7 +4,7 @@
 
     using FitnessCare.Web.Infrastructure;
 
-    public class ContactFormViewModel
+    public class ContactFormInputModel
     {
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please insert your Names!")]
         [Display(Name = "Your names")]
