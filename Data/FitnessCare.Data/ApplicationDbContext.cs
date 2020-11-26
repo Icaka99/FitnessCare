@@ -38,6 +38,20 @@
 
         public DbSet<ContactForm> ContactForms { get; set; }
 
+        public DbSet<Workout> Workouts { get; set; }
+
+        public DbSet<Exercise> Exercises { get; set; }
+
+        public DbSet<WorkoutType> WorkoutTypes { get; set; }
+
+        public DbSet<MuscleGroup> MuscleGroups { get; set; }
+
+        public DbSet<Set> Sets { get; set; }
+
+        public DbSet<Rep> Reps { get; set; }
+
+        public DbSet<WorkoutExercise> WorkoutExercises { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
@@ -61,6 +75,9 @@
         {
             // Needed for Identity models configuration
             base.OnModelCreating(builder);
+
+            builder.Entity<WorkoutExercise>()
+                .HasKey(we => new { we.ExerciseId, we.WorkoutId });
 
             this.ConfigureUserIdentityRelations(builder);
 

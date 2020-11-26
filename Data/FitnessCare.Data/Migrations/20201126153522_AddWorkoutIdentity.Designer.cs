@@ -4,14 +4,16 @@ using FitnessCare.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FitnessCare.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201126153522_AddWorkoutIdentity")]
+    partial class AddWorkoutIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -468,7 +470,7 @@ namespace FitnessCare.Data.Migrations
                     b.Property<DateTime?>("DeletedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ExerciseId")
+                    b.Property<int?>("ExerciseId")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsDeleted")
@@ -592,38 +594,6 @@ namespace FitnessCare.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Workouts");
-                });
-
-            modelBuilder.Entity("FitnessCare.Data.Models.WorkoutExercise", b =>
-                {
-                    b.Property<int>("ExerciseId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WorkoutId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("ExerciseId", "WorkoutId");
-
-                    b.HasIndex("IsDeleted");
-
-                    b.HasIndex("WorkoutId");
-
-                    b.ToTable("WorkoutExercises");
                 });
 
             modelBuilder.Entity("FitnessCare.Data.Models.WorkoutType", b =>
@@ -843,13 +813,9 @@ namespace FitnessCare.Data.Migrations
 
             modelBuilder.Entity("FitnessCare.Data.Models.Set", b =>
                 {
-                    b.HasOne("FitnessCare.Data.Models.Exercise", "Exercise")
+                    b.HasOne("FitnessCare.Data.Models.Exercise", null)
                         .WithMany("Sets")
-                        .HasForeignKey("ExerciseId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Exercise");
+                        .HasForeignKey("ExerciseId");
                 });
 
             modelBuilder.Entity("FitnessCare.Data.Models.Vote", b =>
@@ -888,25 +854,6 @@ namespace FitnessCare.Data.Migrations
                     b.Navigation("Type");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("FitnessCare.Data.Models.WorkoutExercise", b =>
-                {
-                    b.HasOne("FitnessCare.Data.Models.Exercise", "Exercise")
-                        .WithMany()
-                        .HasForeignKey("ExerciseId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("FitnessCare.Data.Models.Workout", "Workout")
-                        .WithMany()
-                        .HasForeignKey("WorkoutId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Exercise");
-
-                    b.Navigation("Workout");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

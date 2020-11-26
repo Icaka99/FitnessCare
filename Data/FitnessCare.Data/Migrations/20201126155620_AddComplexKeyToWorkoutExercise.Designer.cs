@@ -4,14 +4,16 @@ using FitnessCare.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FitnessCare.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201126155620_AddComplexKeyToWorkoutExercise")]
+    partial class AddComplexKeyToWorkoutExercise
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -594,38 +596,6 @@ namespace FitnessCare.Data.Migrations
                     b.ToTable("Workouts");
                 });
 
-            modelBuilder.Entity("FitnessCare.Data.Models.WorkoutExercise", b =>
-                {
-                    b.Property<int>("ExerciseId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WorkoutId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("ExerciseId", "WorkoutId");
-
-                    b.HasIndex("IsDeleted");
-
-                    b.HasIndex("WorkoutId");
-
-                    b.ToTable("WorkoutExercises");
-                });
-
             modelBuilder.Entity("FitnessCare.Data.Models.WorkoutType", b =>
                 {
                     b.Property<int>("Id")
@@ -888,25 +858,6 @@ namespace FitnessCare.Data.Migrations
                     b.Navigation("Type");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("FitnessCare.Data.Models.WorkoutExercise", b =>
-                {
-                    b.HasOne("FitnessCare.Data.Models.Exercise", "Exercise")
-                        .WithMany()
-                        .HasForeignKey("ExerciseId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("FitnessCare.Data.Models.Workout", "Workout")
-                        .WithMany()
-                        .HasForeignKey("WorkoutId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Exercise");
-
-                    b.Navigation("Workout");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
