@@ -17,6 +17,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="HtmlSanitizer" Version="5.0.355" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,5 +33,6 @@
     <Folder Include="Forum\" />
     <Folder Include="Calculator\" />
     <Folder Include="Contacts\" />
+    <Folder Include="Workouts\" />
   </ItemGroup>
 </Project>

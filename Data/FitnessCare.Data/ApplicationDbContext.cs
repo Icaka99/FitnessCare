@@ -48,8 +48,6 @@
 
         public DbSet<Set> Sets { get; set; }
 
-        public DbSet<Rep> Reps { get; set; }
-
         public DbSet<WorkoutExercise> WorkoutExercises { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
