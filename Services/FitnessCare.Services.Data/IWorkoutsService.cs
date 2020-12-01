@@ -8,6 +8,10 @@
     {
         Task CreateAsync(WorkoutInputModel input, string userId);
 
-        WorkoutInputModel AssignWorkoutTypesAndMuscleGroups(WorkoutInputModel model);
+        WorkoutInputModel AssignWorkoutTypes(WorkoutInputModel model);
+
+        ExerciseInputModel AssignMuscleGroups(ExerciseInputModel model);
+
+        Task CreateExerciseAsync(ExerciseInputModel input);
     }
 }

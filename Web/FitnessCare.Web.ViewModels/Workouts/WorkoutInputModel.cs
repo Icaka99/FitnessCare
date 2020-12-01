@@ -4,15 +4,16 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using FitnessCare.Data.Models;
     using Microsoft.AspNetCore.Mvc.Rendering;
 
     public class WorkoutInputModel
     {
+        public int Id { get; set; }
+
         [Display(Name = "Workout type")]
         public int TypeId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please, enter a Date!")]
         public DateTime Date { get; set; }
 
         [Range(0, 24 * 60)]
@@ -21,11 +22,6 @@
 
         public string UserId { get; set; }
 
-        [Required]
-        public ICollection<Exercise> Exercises { get; set; }
-
         public IEnumerable<SelectListItem> Types { get; set; }
-
-        public IEnumerable<SelectListItem> MuscleGroups { get; set; }
     }
 }

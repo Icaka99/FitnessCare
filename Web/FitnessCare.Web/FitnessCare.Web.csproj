@@ -26,6 +26,7 @@
     <PackageReference Include="bootstrap" Version="4.5.3" />
     <PackageReference Include="HtmlSanitizer" Version="5.0.355" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="5.0.0" />
+    <PackageReference Include="jQuery.Fullcalendar" Version="3.9.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -49,6 +50,7 @@
     <Folder Include="Views\Calculator\" />
     <Folder Include="Views\Contacts\" />
     <Folder Include="Views\Articles\" />
+    <Folder Include="Views\Scheduler\" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="wwwroot\css\error.css">

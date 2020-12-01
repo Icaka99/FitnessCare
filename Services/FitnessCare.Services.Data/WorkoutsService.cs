@@ -28,48 +28,13 @@
                 UserId = userId,
             };
 
-            foreach (var inputExercise in model.Exercises)
-            {
-                var exercise = this.db.Exercises.FirstOrDefault(x => x.Name == inputExercise.Name);
-
-                if (exercise == null)
-                {
-                    exercise = new Exercise
-                    {
-                        Name = inputExercise.Name,
-                        MuscleGroupId = inputExercise.MuscleGroupId,
-                    };
-                }
-
-                foreach (var inputSet in inputExercise.Sets)
-                {
-                    var set = this.db.Sets.FirstOrDefault(x => x.Reps == inputSet.Reps);
-
-                    if (set == null)
-                    {
-                        set = new Set
-                        {
-                            Reps = inputSet.Reps,
-                        };
-                    }
-
-                    exercise.Sets.Add(set);
-                }
-
-                workout.Exercises.Add(exercise);
-
-                await this.db.WorkoutExercises.AddAsync(new WorkoutExercise
-                {
-                    Exercise = exercise,
-                    Workout = workout,
-                });
-            }
-
             await this.db.Workouts.AddAsync(workout);
             await this.db.SaveChangesAsync();
+
+            model.Id = workout.Id;
         }
 
-        public WorkoutInputModel AssignWorkoutTypesAndMuscleGroups(WorkoutInputModel model)
+        public WorkoutInputModel AssignWorkoutTypes(WorkoutInputModel model)
         {
             model.Types = this.db.WorkoutTypes
                 .Select(x => new SelectListItem
@@ -78,6 +43,11 @@
                     Value = x.Id.ToString(),
                 });
 
+            return model;
+        }
+
+        public ExerciseInputModel AssignMuscleGroups(ExerciseInputModel model)
+        {
             model.MuscleGroups = this.db.MuscleGroups
                 .Select(x => new SelectListItem
                 {
@@ -86,6 +56,37 @@
                 });
 
             return model;
+        }
+
+        public async Task CreateExerciseAsync(ExerciseInputModel input)
+        {
+            var exercise = new Exercise
+            {
+                MuscleGroupId = input.MuscleGroupId,
+                Name = input.Name,
+                WorkoutId = input.WorkoutId,
+            };
+
+            foreach (var inputSet in input.Sets)
+            {
+                var set = new Set
+                {
+                    Reps = inputSet.Reps,
+                };
+
+                exercise.Sets.Add(set);
+            }
+
+            var workout = this.db.Workouts.FirstOrDefault(x => x.Id == input.WorkoutId);
+
+            await this.db.WorkoutExercises.AddAsync(new WorkoutExercise
+            {
+                Exercise = exercise,
+                Workout = workout,
+            });
+
+            await this.db.Exercises.AddAsync(exercise);
+            await this.db.SaveChangesAsync();
         }
     }
 }

@@ -21,6 +21,14 @@
       ]
     },
     {
+      "library": "fullcalendar@5.4.0",
+      "destination": "wwwroot/lib/fullcalendar/"
+    },
+    {
+      "library": "fullcalendar-scheduler@5.4.0",
+      "destination": "wwwroot/lib/fullcalendar-scheduler/"
+    },
+    {
       "library": "jquery-validation@1.19.2",
       "destination": "wwwroot/lib/jquery-validation/",
       "files": [

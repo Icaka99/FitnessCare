@@ -3,16 +3,24 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using Microsoft.AspNetCore.Mvc.Rendering;
+
     public class ExerciseInputModel
     {
         [Required]
-        [MinLength(3)]
+        [MinLength(3, ErrorMessage = "Name minimum length is 3 characters")]
         public string Name { get; set; }
+
+        [Display(Name = "Muscle group")]
+        public int MuscleGroupId { get; set; }
 
         public int MuscleGroup { get; set; }
 
         public int WorkoutId { get; set; }
 
-        public IEnumerable<SetInputModel> Sets { get; set; }
+        [Required(ErrorMessage = "Please, add atleast 1 set!")]
+        public ICollection<SetInputModel> Sets { get; set; }
+
+        public IEnumerable<SelectListItem> MuscleGroups { get; set; }
     }
 }

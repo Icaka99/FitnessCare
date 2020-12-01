@@ -19,6 +19,7 @@ namespace FitnessCare.Data.Models
             this.Posts = new HashSet<Post>();
             this.Articles = new HashSet<Article>();
             this.Comments = new HashSet<Comment>();
+            this.Workouts = new HashSet<Workout>();
         }
 
         // Audit info
@@ -42,5 +43,7 @@ namespace FitnessCare.Data.Models
         public virtual ICollection<Article> Articles { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
+
+        public virtual ICollection<Workout> Workouts { get; set; }
     }
 }
