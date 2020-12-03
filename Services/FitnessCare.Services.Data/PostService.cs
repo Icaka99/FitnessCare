@@ -48,7 +48,7 @@
                 CommentsCount = x.Comments.Count,
                 CreatedOn = x.CreatedOn,
                 UserUserName = x.User.UserName,
-                Comments = x.Comments,
+                User = x.User,
             }).ToList();
         }
 
@@ -69,6 +69,7 @@
                     UserUserName = x.User.UserName,
                     CommentsCount = x.Comments.Count,
                     Comments = x.Comments,
+                    User = x.User,
                 })
                 .FirstOrDefault();
             return post;

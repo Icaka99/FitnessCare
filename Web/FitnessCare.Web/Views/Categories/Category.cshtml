@@ -25,9 +25,9 @@
                             <div class="row no-gutters align-items-center">
                                 <div class="col-4">@post.CommentsCount</div>
                                 <div class="media col-8 align-items-center">
-                                    <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583246/AAA/2.jpg" alt="" class="d-block ui-w-30 rounded-circle">
+                                    <img src="@post.User.ProfilePictureUrl" alt="" class="rounded-circle" width="70">
                                     <div class="media-body flex-truncate ml-2">
-                                        <div class="line-height-1 text-truncate">1 day ago</div> <a href="javascript:void(0)" class="text-muted small text-truncate" data-abc="true">by Tim cook</a>
+                                        <div class="line-height-1 text-truncate">1 day ago</div> <a href="javascript:void(0)" class="text-muted small text-truncate" data-abc="true">by @post.UserUserName</a>
                                     </div>
                                 </div>
                             </div>

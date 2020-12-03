@@ -2,12 +2,14 @@
 {
     using System.Reflection;
 
+    using CloudinaryDotNet;
     using FitnessCare.Data;
     using FitnessCare.Data.Common;
     using FitnessCare.Data.Common.Repositories;
     using FitnessCare.Data.Models;
     using FitnessCare.Data.Repositories;
     using FitnessCare.Data.Seeding;
+    using FitnessCare.Services;
     using FitnessCare.Services.Data;
     using FitnessCare.Services.Mapping;
     using FitnessCare.Services.Messaging;
@@ -62,6 +64,15 @@
 
             services.AddSingleton(this.configuration);
 
+            // Add cloudinary
+            var cloudinary = new Cloudinary(new Account()
+            {
+                Cloud = this.configuration["Cloudinary:CloudName"],
+                ApiKey = this.configuration["Cloudinary:ApiKey"],
+                ApiSecret = this.configuration["Cloudinary:ApiSecret"],
+            });
+            services.AddSingleton(cloudinary);
+
             // Data repositories
             services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
@@ -79,6 +90,7 @@
             services.AddTransient<IPostService, PostService>();
             services.AddTransient<IContactsService, ContactsService>();
             services.AddTransient<IWorkoutsService, WorkoutsService>();
+            services.AddTransient<ICloudinaryService, CloudinaryService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -118,7 +130,6 @@
             app.UseEndpoints(
                 endpoints =>
                     {
-                        endpoints.MapControllerRoute("BlogRoute", "{controller=Blog}/{action=Blog}/{page:int}");
                         endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                         endpoints.MapRazorPages();

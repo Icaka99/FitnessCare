@@ -32,6 +32,8 @@ namespace FitnessCare.Data.Models
 
         public DateTime? DeletedOn { get; set; }
 
+        public string ProfilePictureUrl { get; set; }
+
         public virtual ICollection<IdentityUserRole<string>> Roles { get; set; }
 
         public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
