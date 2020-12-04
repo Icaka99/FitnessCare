@@ -13,19 +13,30 @@
     public class ArticleService : IArticleService
     {
         private readonly ApplicationDbContext db;
+        private readonly ICloudinaryService cloudinaryService;
+        private readonly string defaultArticlePicture = "https://res.cloudinary.com/icaka99/image/upload/v1607075451/article_n65evk.jpg";
 
-        public ArticleService(ApplicationDbContext db)
+        public ArticleService(ApplicationDbContext db, ICloudinaryService cloudinaryService)
         {
             this.db = db;
+            this.cloudinaryService = cloudinaryService;
         }
 
         public async Task CreateAsync(AddArticleInputModel input, string id)
         {
+            string imageUrl = this.defaultArticlePicture;
+
+            if (input.PictureFile != null)
+            {
+                imageUrl = await this.cloudinaryService.UploudAsync(input.PictureFile);
+            }
+
             var dbArticle = new Article
             {
                 Title = input.Title,
                 Content = input.Content,
                 UserId = id,
+                ImageUrl = imageUrl,
             };
             await this.db.Articles.AddAsync(dbArticle);
             await this.db.SaveChangesAsync();
@@ -45,6 +56,7 @@
                     UserUserName = x.User.UserName,
                     VotesCount = x.Votes.Count,
                     Comments = x.Comments,
+                    ImageUrl = x.ImageUrl,
                 }).ToList();
 
             return articles.ToList();
@@ -60,6 +72,7 @@
                 Id = x.Id,
                 VotesCount = x.Votes.Count,
                 Comments = x.Comments,
+                ImageUrl = x.ImageUrl,
             })
             .OrderByDescending(x => x.CreatedOn)
             .ToList();
@@ -82,6 +95,7 @@
                     CreatedOn = x.CreatedOn,
                     VotesCount = this.db.Votes.Where(x => x.ArticleId == id).Sum(x => (int)x.Type),
                     Comments = x.Comments,
+                    ImageUrl = x.ImageUrl,
                 })
                 .FirstOrDefault();
             return article;

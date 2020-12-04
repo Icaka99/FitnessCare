@@ -38,7 +38,7 @@
             var user = await this.userManager.GetUserAsync(this.User);
 
             await this.articleService.CreateAsync(input, user.Id);
-            return this.Redirect("/Blog/ThankYou");
+            return this.Redirect("/Articles/ThankYou");
         }
 
         public IActionResult ThankYou()

@@ -24,6 +24,8 @@
 
         public int VotesCount { get; set; }
 
+        public string ImageUrl { get; set; }
+
         public IEnumerable<Comment> Comments { get; set; }
 
         public string ShortContent

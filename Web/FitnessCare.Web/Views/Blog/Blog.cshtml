@@ -33,7 +33,7 @@
                 @foreach (var article in Model.Articles)
                 {
                     <div class="card mb-4">
-                        @*<img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">*@
+                        <img class="card-img-top" src="@article.ImageUrl" alt="ArticlePicture">
                         <div class="card-body">
                             <h2 class="card-title">@article.Title</h2>
                             <p class="card-text">@article.ShortContent</p>
@@ -131,9 +131,7 @@
                     </div>
                 </div>
 
-                <form action="/Blog/Add">
-                    <input class="btn btn-primary" type="submit" value="Add article" />
-                </form>
+                <a class="btn btn-primary" asp-controller="Articles" asp-action="Add">Add article</a>
 
             </div>
 

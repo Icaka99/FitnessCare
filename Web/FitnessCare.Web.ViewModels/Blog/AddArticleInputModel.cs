@@ -3,6 +3,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using FitnessCare.Web.Infrastructure;
+    using Microsoft.AspNetCore.Http;
 
     public class AddArticleInputModel
     {
@@ -21,5 +22,7 @@
 
         [GoogleReCaptchaValidation]
         public string RecaptchaValue { get; set; }
+
+        public IFormFile PictureFile { get; set; }
     }
 }

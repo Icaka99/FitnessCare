@@ -26,7 +26,7 @@
 
             if (input.PictureFile != null)
             {
-                imageUrl = await this.cloudinaryService.UploudAsync(input.PictureFile); ;
+                imageUrl = await this.cloudinaryService.UploudAsync(input.PictureFile);
             }
 
             var dbCategory = new Category

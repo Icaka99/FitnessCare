@@ -25,6 +25,8 @@
 
         public virtual ApplicationUser User { get; set; }
 
+        public string ImageUrl { get; set; }
+
         public virtual ICollection<Vote> Votes { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
