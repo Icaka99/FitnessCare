@@ -1,44 +1,7 @@
-﻿<html lang='en'>
-<head>
-    <meta charset='utf-8' />
-    <script src="/lib/jquery/dist/jquery.min.js?v=9_aliU8dGd2tb6OSsuzixeV4y_faTqgFtohetphbbj0"></script>
-    <script src="/lib/jquery-validation/dist/jquery.validate.min.js?v=-BEKmIvQ6IsL8sHcvidtDrNOdZO3C9LtFPtF2H0dOHI"></script>
-    <script src="/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js?v=XNNC8ESw29iopRLukVRazlP44TxnjGmEQanHJ5kHmtk"></script>
-    <script src="/lib/bootstrap/dist/js/bootstrap.min.js?v=2JaAhvdQnfNMMnhWPauHOZ2k-dzftBmBjjownu3HC4g"></script>
-    <script src="/js/site.min.js?v=h-g3BZ4ncEkyJpIwCB-INNMX5BDPemwxItUCNpZkXmk"></script>
-    <script src="/lib/moment/min/moment-with-locales.min.js?v=E3Snwx6F4t7DiA_L3DgPk6In2M1747JSau-3PWjtS5I"></script>
-    <link href='~/lib/fullcalendar/main.css' rel='stylesheet' />
-    <script src='~/lib/fullcalendar/main.js'></script>
-    <script>document.addEventListener('DOMContentLoaded', function () {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                dateClick: function (info) {
-                    window.location.replace("https://localhost:5001/Scheduler/AddWorkout");
-                    console.log(info.dateStr);
-                }
-            });
-            calendar.render();
-        });</script>
+﻿<head>
+    <link rel="stylesheet" href="~/css/scheduler.css">
 </head>
-<body>
-    <div class="modal" tabindex="-1" role="dialog" id="myModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="eventTitle"></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body" id="pDetails">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div id='calendar'></div>
-</body>
-</html>
+<a class="btn btn-primary" asp-controller="Scheduler" asp-action="AddWorkout">Add workout</a>
+
+<calendar month="12" year="2020" events="@Model" />

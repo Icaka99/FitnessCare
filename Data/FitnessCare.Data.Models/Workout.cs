@@ -18,7 +18,7 @@
         public WorkoutType Type { get; set; }
 
         [Required]
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
 
         public TimeSpan Duration { get; set; }
 

@@ -1,0 +1,45 @@
+﻿@model FitnessCare.Web.ViewModels.Workouts.WorkoutViewModel
+
+<div>
+    <div>
+        <img class="rounded" src="@Model.User.ProfilePictureUrl" width="150"/>
+    </div>
+    <div>
+        @Model.Date
+    </div>
+    <div>
+        @Model.Duration
+    </div>
+    <div>
+        @Model.WorkoutType.Name
+    </div>
+    <div>
+        @Model.UserUserName
+    </div>
+
+    <div id="accordion">
+        @foreach (var exercise in Model.Exercises)
+        {
+            int index = 1;
+
+            <div class="card">
+                <div class="card-header">
+                    <a class="card-link" data-toggle="collapse" href="#collapse@(exercise.Id)">
+                        @exercise.Name (@(exercise.MuscleGroup.Name))
+                    </a>
+                </div>
+                <div id="collapse@(exercise.Id)" class="collapse show" data-parent="#accordion">
+                    <div class="card-body">
+                        @foreach (var set in exercise.Sets)
+                        {
+                            <div>
+                                <p>Set@(index++)Reps: @set.Reps</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>

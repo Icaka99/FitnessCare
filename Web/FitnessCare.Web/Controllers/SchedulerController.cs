@@ -1,5 +1,7 @@
 ﻿namespace FitnessCare.Web.Controllers
 {
+    using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using FitnessCare.Data.Models;
@@ -21,7 +23,9 @@
 
         public IActionResult Scheduler()
         {
-            return this.View();
+            var events = this.workoutService.GetEvents();
+
+            return this.View(events);
         }
 
         public IActionResult AddWorkout()
@@ -74,6 +78,19 @@
             await this.workoutService.CreateExerciseAsync(model);
 
             return this.RedirectToAction("AddExerciseToWorkout", "Scheduler", new { id = model.WorkoutId });
+        }
+
+        public IActionResult Workout([FromRoute] string id)
+        {
+            int workoutId = this.workoutService.GetWorkoutIdFromDate(id);
+
+            var workout = this.workoutService.GetDetails(workoutId);
+            if (workout == null)
+            {
+                return this.NotFound();
+            }
+
+            return this.View(workout);
         }
     }
 }

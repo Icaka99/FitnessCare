@@ -64,6 +64,7 @@
     <Folder Include="Views\Articles\" />
     <Folder Include="Views\Scheduler\" />
     <Folder Include="Areas\Identity\Data\" />
+    <Folder Include="CustomTagHelpers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml" />
