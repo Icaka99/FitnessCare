@@ -3,6 +3,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using FitnessCare.Web.Infrastructure;
+    using Microsoft.AspNetCore.Http;
 
     public class AddCategoryInputModel
     {
@@ -12,7 +13,7 @@
 
         public string Description { get; set; }
 
-        public string ImageURL { get; set; }
+        public IFormFile PictureFile { get; set; }
 
         [GoogleReCaptchaValidation]
         public string RecaptchaValue { get; set; }

@@ -11,19 +11,29 @@
     public class CategoryService : ICategoryService
     {
         private readonly ApplicationDbContext db;
+        private readonly ICloudinaryService cloudinaryService;
+        private readonly string defaultCategoryPicture = "https://res.cloudinary.com/icaka99/image/upload/v1607074489/category-manager-640x230_tlptcc.jpg";
 
-        public CategoryService(ApplicationDbContext db)
+        public CategoryService(ApplicationDbContext db, ICloudinaryService cloudinaryService)
         {
             this.db = db;
+            this.cloudinaryService = cloudinaryService;
         }
 
         public async Task CreateAsync(AddCategoryInputModel input)
         {
+            string imageUrl = this.defaultCategoryPicture;
+
+            if (input.PictureFile != null)
+            {
+                imageUrl = await this.cloudinaryService.UploudAsync(input.PictureFile); ;
+            }
+
             var dbCategory = new Category
             {
                 Name = input.Name,
                 Description = input.Description,
-                ImageURL = input.ImageURL,
+                ImageURL = imageUrl,
             };
             await this.db.Categories.AddAsync(dbCategory);
             await this.db.SaveChangesAsync();
