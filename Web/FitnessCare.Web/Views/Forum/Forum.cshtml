@@ -18,6 +18,14 @@
     <!-- Page Content -->
     <div class="container">
 
+        @if (this.TempData.ContainsKey("Message"))
+        {
+            <div class="alert alert-success allert-dismissible">
+                @this.TempData["Message"]
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        }
+
         <!-- Jumbotron Header -->
         <header class="jumbotron my-4">
             <h1 class="display-3">A Warm Welcome!</h1>

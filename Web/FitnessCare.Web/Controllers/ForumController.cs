@@ -40,6 +40,8 @@
 
             await this.categoryService.CreateAsync(input);
 
+            this.TempData["Message"] = "Category added successfully";
+
             return this.Redirect("/Forum/Forum");
         }
     }

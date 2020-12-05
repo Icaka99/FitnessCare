@@ -53,6 +53,8 @@
 
             await this.workoutService.CreateAsync(model, userId);
 
+            this.TempData["Message"] = "Workout added successfully";
+
             return this.RedirectToAction("AddExerciseToWorkout", "Scheduler", new { id = model.Id });
         }
 
@@ -76,6 +78,8 @@
             }
 
             await this.workoutService.CreateExerciseAsync(model);
+
+            this.TempData["Message"] = "Exercise added successfully to Workout";
 
             return this.RedirectToAction("AddExerciseToWorkout", "Scheduler", new { id = model.WorkoutId });
         }

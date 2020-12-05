@@ -19,6 +19,15 @@
     <!-- Page Content -->
     <div class="container">
 
+
+        @if (this.TempData.ContainsKey("Message"))
+        {
+            <div class="alert alert-success alert-dismissable">
+                @this.TempData["Message"]
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+        }
+
         <div class="row">
 
             <!-- Blog Entries Column -->
@@ -68,9 +77,9 @@
 
                 <!-- Pagination -->
 
-                <partial name="_PagingPartial" model="@Model"/>
+                <partial name="_PagingPartial" model="@Model" />
 
-                </div>
+            </div>
 
             <!-- Sidebar Widgets Column -->
             <div class="col-md-4">

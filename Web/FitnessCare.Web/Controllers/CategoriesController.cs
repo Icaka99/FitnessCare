@@ -48,6 +48,9 @@
             input.UserId = user.Id;
 
             await this.postService.CreateAsync(input);
+
+            this.TempData["Message"] = "Post added successfully";
+
             return this.Redirect($"/Categories/Category?Id={input.CategoryId}");
         }
     }
