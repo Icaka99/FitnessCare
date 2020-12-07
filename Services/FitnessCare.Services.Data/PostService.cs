@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using FitnessCare.Common;
     using FitnessCare.Data;
     using FitnessCare.Data.Models;
     using FitnessCare.Web.ViewModels.Forum;
@@ -72,6 +73,15 @@
                     User = x.User,
                 })
                 .FirstOrDefault();
+
+            foreach (var comment in post.Comments)
+            {
+                if (comment.User == null)
+                {
+                    comment.User = this.db.Users.Where(x => x.Id == comment.UserId).FirstOrDefault();
+                }
+            }
+
             return post;
         }
     }

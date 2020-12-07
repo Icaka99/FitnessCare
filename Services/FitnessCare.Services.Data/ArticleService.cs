@@ -99,6 +99,15 @@
                     ImageUrl = x.ImageUrl,
                 })
                 .FirstOrDefault();
+
+            foreach (var comment in article.Comments)
+            {
+                if (comment.User == null)
+                {
+                    comment.User = this.db.Users.Where(x => x.Id == comment.UserId).FirstOrDefault();
+                }
+            }
+
             return article;
         }
 

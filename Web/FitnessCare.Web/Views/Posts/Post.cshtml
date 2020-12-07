@@ -27,7 +27,7 @@
 
                 <div class="commented-section mt-2 border rounded-lg offset-@counter">
                     <div class="d-flex flex-row align-items-center commented-user">
-                        <img class="img-fluid img-responsive rounded-circle mr-2" src="@comment.User.ProfilePictureUrl" width="50">
+                        <img class="img-fluid img-responsive rounded-circle mr-2" src="@comment.User.ProfilePictureUrl" alt="ProfilePicture" width="50">
                         <h5 class="mr-2">@comment.UserUsername</h5><span class="dot mb-1"></span><span class="mb-1 ml-2"><time datetime="@comment.CreatedOn.ToString("O")"></time></span>
                     </div>
                     <div class="comment-text-sm"><span>@comment.Content</span></div>

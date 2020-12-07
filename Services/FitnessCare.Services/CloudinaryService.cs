@@ -6,12 +6,12 @@
 
     using CloudinaryDotNet;
     using CloudinaryDotNet.Actions;
+    using FitnessCare.Common;
     using Microsoft.AspNetCore.Http;
 
     public class CloudinaryService : ICloudinaryService
     {
         private readonly Cloudinary cloudinary;
-        private readonly string defaultProfilePicUrl = @"https://res.cloudinary.com/icaka99/image/upload/v1606990350/twitter-avi-gender-balanced-figure_ti5utk.png";
 
         public CloudinaryService(Cloudinary cloudinary)
         {
@@ -22,7 +22,7 @@
         {
             if (file == null || this.IsFileValid(file) == false)
             {
-                return this.defaultProfilePicUrl;
+                return GlobalConstants.DefaultProfilePicUrl;
             }
 
             string url = " ";
