@@ -127,5 +127,23 @@
                 })
                 .ToList();
         }
+
+        public async Task UpdateAsync(int id, EditArticleInputModel input)
+        {
+            var article = this.db.Articles.FirstOrDefault(x => x.Id == id);
+            article.Content = input.Content;
+            article.Title = input.Title;
+
+            string imageUrl = article.ImageUrl;
+
+            if (input.PictureFile != null)
+            {
+                imageUrl = await this.cloudinaryService.UploudAsync(input.PictureFile);
+            }
+
+            article.ImageUrl = imageUrl;
+
+            await this.db.SaveChangesAsync();
+        }
     }
 }

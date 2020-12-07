@@ -1,0 +1,48 @@
+﻿@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+@using FitnessCare.Web.ViewModels.Blog
+@model EditArticleInputModel
+<section class="py-5">
+    <div class="container">
+        <h1 style="margin: 2%; text-align: center;">Add Article</h1>
+        <div style="padding: 5%;">
+
+            <script src="/lib/tinymce/tinymce.min.js" type="text/javascript"></script>
+            <script>tinymce.init({ selector: 'textarea' });</script>
+
+            <form method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Title"></label>
+                    <input asp-for="Title" class="form-control">
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="custom-file">
+                    <input type="file" accept="image/*" asp-for="PictureFile" class="custom-file-input" id="inputGroupFile01"
+                           aria-describedby="inputGroupFileAddon01">
+                    <label class="custom-file-label" for="inputGroupFile01">Choose image</label>
+                    <span asp-validation-for="PictureFile" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Content"></label>
+                    <textarea rows="3" asp-for="Content" class="form-control"></textarea>
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </div>
+                <input type="hidden" id="RecaptchaValue" name="RecaptchaValue" />
+                <input type="hidden" asp-for="Id" />
+                <button type="submit" class="btn btn-primary text-uppercase">Save Changes</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts
+{
+    <script src="https://www.google.com/recaptcha/api.js?render=@this.Configuration["GoogleReCaptcha:Key"]"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@this.Configuration["GoogleReCaptcha:Key"]', { action: 'contact_form' }).then(function (token) {
+                document.getElementById("RecaptchaValue").value = token;
+            });
+        });
+    </script>
+}

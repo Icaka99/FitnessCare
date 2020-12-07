@@ -20,5 +20,7 @@
         void Delete(int id);
 
         IEnumerable<ArticleViewModel> GetRandomArticles(int count);
+
+        Task UpdateAsync(int id, EditArticleInputModel model);
     }
 }

@@ -63,12 +63,36 @@
         public IActionResult Delete(int id)
         {
             this.articleService.Delete(id);
-            return this.Redirect("/Articles/DeleteSuccess");
+
+            this.TempData["Message"] = "Article is deleted successfully!";
+            return this.Redirect("/Blog/Blog");
         }
 
-        public IActionResult DeleteSuccess()
+        public IActionResult Edit(int id)
         {
-            return this.View();
+            var article = this.articleService.GetDetails(id);
+
+            var model = new EditArticleInputModel
+            {
+                Id = article.Id,
+                Content = article.Content,
+                Title = article.Title,
+            };
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, EditArticleInputModel article)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View();
+            }
+
+            await this.articleService.UpdateAsync(id, article);
+
+            return this.RedirectToAction(nameof(this.Article), new { id });
         }
     }
 }

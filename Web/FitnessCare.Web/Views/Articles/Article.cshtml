@@ -104,32 +104,31 @@
                 <p class="lead">
                     by
                     <a href="#">@Model.UserUserName</a> <span>Posted on <time datetime="@Model.CreatedOn.ToString("O")"></time></span>
-                    <div>
+                    @if (this.User.Identity.IsAuthenticated)
+                    {
                         <div>
-                            <a href="#" onclick="sendVote(@Model.Id, true)">
-                                <i class="far fa-thumbs-up"></i>
-                            </a>
+                            <div>
+                                <a href="#" onclick="sendVote(@Model.Id, true)">
+                                    <i class="far fa-thumbs-up"></i>
+                                </a>
+                            </div>
+                            <div id="votesCount">@Model.VotesCount</div>
+                            <div>
+                                <a href="#" onclick="sendVote(@Model.Id, false)">
+                                    <i class="far fa-thumbs-down"></i>
+                                </a>
+                            </div>
                         </div>
-                        <div id="votesCount">@Model.VotesCount</div>
-                        <div>
-                            <a href="#" onclick="sendVote(@Model.Id, false)">
-                                <i class="far fa-thumbs-down"></i>
-                            </a>
-                        </div>
-                    </div>
+                    }
                 </p>
 
                 <div>
-                    <img src="@Model.ImageUrl" width="700"/>
+                    <img class="rounded" src="@Model.ImageUrl" width="700"/>
                 </div>
 
                 <!-- Content -->
-                <div>
+                <div class="col-md-12">
                     @Html.Raw(Model.SanitizedContent)
-                </div>
-
-                <div>
-                    <a asp-controller="Articles" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
                 </div>
 
                 <!-- Comments Form -->
@@ -150,7 +149,7 @@
                 <!-- Single Comment -->
                 @{await DisplayComments(null); }
 
-                </div>
+            </div>
 
             <!-- Sidebar Widgets Column -->
             <div class="col-md-4">
@@ -210,6 +209,17 @@
                         You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
                     </div>
                 </div>
+
+                @if (this.User.Identity.IsAuthenticated)
+                {
+                    <div>
+                        <a asp-controller="Articles" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+                    </div>
+
+                    <div>
+                        <a asp-controller="Articles" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success">Edit</a>
+                    </div>
+                }
 
             </div>
 
