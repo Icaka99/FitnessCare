@@ -1,17 +1,32 @@
 ﻿namespace FitnessCare.Web.Controllers
 {
-    using System;
     using System.Diagnostics;
 
+    using FitnessCare.Services.Data;
     using FitnessCare.Web.ViewModels;
-
+    using FitnessCare.Web.ViewModels.Home;
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : BaseController
     {
+        private readonly IArticleService articlesService;
+        private readonly ICategoryService categoryService;
+
+        public HomeController(IArticleService articlesService, ICategoryService categoryService)
+        {
+            this.articlesService = articlesService;
+            this.categoryService = categoryService;
+        }
+
         public IActionResult Index()
         {
-            return this.View();
+            var indexViewModel = new IndexViewModel
+            {
+                RandomArticles = this.articlesService.GetRandomArticles(4),
+                RandomCategories = this.categoryService.GetRandomCategories(4),
+            };
+
+            return this.View(indexViewModel);
         }
 
         public IActionResult Privacy()

@@ -18,5 +18,7 @@
         ArticleViewModel GetDetails(int id);
 
         void Delete(int id);
+
+        IEnumerable<ArticleViewModel> GetRandomArticles(int count);
     }
 }

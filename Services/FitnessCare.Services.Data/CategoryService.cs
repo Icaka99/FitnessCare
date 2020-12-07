@@ -1,5 +1,6 @@
 ﻿namespace FitnessCare.Services.Data
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -74,6 +75,21 @@
                 })
                 .FirstOrDefault();
             return category;
+        }
+
+        public IEnumerable<CategoryViewModel> GetRandomCategories(int count)
+        {
+            return this.db.Categories
+                .OrderBy(x => Guid.NewGuid())
+                .Take(count)
+                .Select(x => new CategoryViewModel
+                {
+                    Description = x.Description,
+                    Id = x.Id,
+                    Name = x.Name,
+                    ImageURL = x.ImageURL,
+                })
+                .ToList();
         }
     }
 }

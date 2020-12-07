@@ -1,5 +1,6 @@
 ﻿namespace FitnessCare.Services.Data
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
 
@@ -106,6 +107,25 @@
             var article = this.db.Articles.Where(x => x.Id == id).FirstOrDefault();
             article.IsDeleted = true;
             this.db.SaveChanges();
+        }
+
+        public IEnumerable<ArticleViewModel> GetRandomArticles(int count)
+        {
+            return this.db.Articles
+                .OrderBy(x => Guid.NewGuid())
+                .Take(count)
+                .Select(x => new ArticleViewModel
+                {
+                    Title = x.Title,
+                    Id = x.Id,
+                    ImageUrl = x.ImageUrl,
+                    CommentsCount = x.Comments.Count,
+                    VotesCount = x.Votes.Count,
+                    Content = x.Content,
+                    CreatedOn = x.CreatedOn,
+                    UserUserName = x.User.UserName,
+                })
+                .ToList();
         }
     }
 }

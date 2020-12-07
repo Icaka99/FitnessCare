@@ -34,5 +34,6 @@
     <Folder Include="Calculator\" />
     <Folder Include="Contacts\" />
     <Folder Include="Workouts\" />
+    <Folder Include="Home\" />
   </ItemGroup>
 </Project>

@@ -26,6 +26,8 @@
 
         public string ImageUrl { get; set; }
 
+        public int CommentsCount { get; set; }
+
         public IEnumerable<Comment> Comments { get; set; }
 
         public string ShortContent

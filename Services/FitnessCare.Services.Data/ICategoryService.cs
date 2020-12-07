@@ -16,5 +16,7 @@
         CategoryViewModel GetDetails(int id);
 
         IEnumerable<CategoryViewModel> GetAll();
+
+        IEnumerable<CategoryViewModel> GetRandomCategories(int count);
     }
 }
