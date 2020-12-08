@@ -1,12 +1,9 @@
 ﻿namespace FitnessCare.Web.Controllers
 {
-    using System;
-    using System.Threading.Tasks;
+    using System.Linq;
 
-    using FitnessCare.Data.Models;
     using FitnessCare.Services.Data;
     using FitnessCare.Web.ViewModels.Blog;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
     public class BlogController : BaseController
@@ -27,7 +24,7 @@
                 id = 1;
             }
 
-            var articles = this.articleService.GetArticles(id, 5);
+            var articles = this.articleService.GetArticles(id, ItemsPerPage);
             var orderedArticles = this.articleService.GetAllOrderedArticles();
 
             var model = new ArticlesListViewModel
@@ -37,9 +34,33 @@
                 Articles = articles,
                 OrderedArticles = orderedArticles,
                 PageNumber = id,
+                SearchString = null,
             };
 
             return this.View(model);
+        }
+
+        public IActionResult List(SearchStringInputModel input, int id)
+        {
+            if (id == 0)
+            {
+                id = 1;
+            }
+
+            var articles = this.articleService.GetSearchedArticles(input, id, ItemsPerPage);
+            var orderedArticles = this.articleService.GetAllOrderedArticles();
+
+            var model = new ArticlesListViewModel
+            {
+                Articles = articles,
+                ArticlesCount = articles.Count(),
+                ItemsPerPage = ItemsPerPage,
+                PageNumber = id,
+                OrderedArticles = orderedArticles,
+                SearchString = input.SearchString,
+            };
+
+            return this.View(nameof(this.Blog), model);
         }
     }
 }

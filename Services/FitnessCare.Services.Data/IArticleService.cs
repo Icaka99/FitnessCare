@@ -9,6 +9,8 @@
     {
         int GetCount();
 
+        IEnumerable<ArticleViewModel> GetSearchedArticles(SearchStringInputModel input, int page, int itemsPerPage = 1);
+
         IEnumerable<ArticleViewModel> GetArticles(int page, int itemsPerPage = 1);
 
         IEnumerable<ArticleViewModel> GetAllOrderedArticles();

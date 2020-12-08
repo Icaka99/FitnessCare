@@ -43,6 +43,29 @@
             await this.db.SaveChangesAsync();
         }
 
+        public IEnumerable<ArticleViewModel> GetSearchedArticles(SearchStringInputModel input, int page, int itemsPerPage = 1)
+        {
+            if (input.SearchString == null)
+            {
+                input.SearchString = string.Empty;
+            }
+
+            return this.db.Articles
+                .Where(x => x.Title.ToLower().Contains(input.SearchString.ToLower()))
+                .OrderByDescending(x => x.CreatedOn)
+                .Select(x => new ArticleViewModel
+                {
+                    Title = x.Title,
+                    Content = x.Content,
+                    CreatedOn = x.CreatedOn,
+                    Id = x.Id,
+                    UserUserName = x.User.UserName,
+                    VotesCount = x.Votes.Count,
+                    Comments = x.Comments,
+                    ImageUrl = x.ImageUrl,
+                }).ToList();
+        }
+
         public IEnumerable<ArticleViewModel> GetArticles(int page, int itemsPerPage = 1)
         {
             var articles = this.db.Articles

@@ -8,5 +8,7 @@
         public IEnumerable<ArticleViewModel> Articles { get; set; }
 
         public IEnumerable<ArticleViewModel> OrderedArticles { get; set; }
+
+        public string SearchString { get; set; }
     }
 }
