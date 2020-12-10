@@ -90,6 +90,13 @@
       "files": [
         "min/moment-with-locales.min.js"
       ]
+    },
+    {
+      "library": "magic-snowflakes@4.1.6",
+      "destination": "wwwroot/lib/snowflakes/",
+      "files": [
+        "dist/snowflakes.min.js"
+      ]
     }
   ]
 }
