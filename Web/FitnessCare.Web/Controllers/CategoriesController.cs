@@ -35,7 +35,7 @@
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> AddPost(AddPostInputModel input, int value)
+        public async Task<IActionResult> AddPost(AddPostInputModel input, int id)
         {
             if (!this.ModelState.IsValid)
             {
@@ -44,7 +44,7 @@
 
             var user = await this.userManager.GetUserAsync(this.User);
 
-            input.CategoryId = value;
+            input.CategoryId = id;
             input.UserId = user.Id;
 
             await this.postService.CreateAsync(input);

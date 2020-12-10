@@ -7,6 +7,7 @@
 <div class="text-center">
     <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
 
+    <h2>Check out our articles:</h2>
     <div class="row">
         @foreach (var article in Model.RandomArticles)
         {
@@ -21,6 +22,7 @@
         }
     </div>
     <hr />
+    <h2>Check out our forum posts:</h2>
     <div class="row">
         @foreach (var category in Model.RandomCategories)
         {

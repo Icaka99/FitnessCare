@@ -50,6 +50,7 @@
                 CreatedOn = x.CreatedOn,
                 UserUserName = x.User.UserName,
                 User = x.User,
+                CategoryId = x.CategoryId,
             }).ToList();
         }
 
@@ -71,6 +72,7 @@
                     CommentsCount = x.Comments.Count,
                     Comments = x.Comments,
                     User = x.User,
+                    CategoryId = x.CategoryId,
                 })
                 .FirstOrDefault();
 

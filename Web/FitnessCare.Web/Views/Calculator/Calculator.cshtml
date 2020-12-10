@@ -4,17 +4,20 @@
 
 <div class="container col-md-5 float-left">
     <h1 style="margin: 2%; text-align: center;">Calculate Calories</h1>
-    <div class="card" style="padding: 5%;">
+    <div class="card border rounded-lg" style="padding: 5%;">
 
         <form method="post">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
-                <div class="input-group">
-                    <label asp-for="Gender"></label>
-                    <input type="radio" asp-for="Gender" class="form-control" name="Gender" value="true" />
-                    <input type="radio" asp-for="Gender" class="form-control" name="Gender" value="false" />
-                    <span asp-validation-for="Gender" class="text-danger"></span>
+                <div class="input-group btn-group">
+                    <label asp-for="Gender" class="btn btn-light btn-pill active btn-md form-check-label">
+                        <input class="form-check-input" autocomplete="off" asp-for="Gender" type="radio" name="Gender" value="true" />Male <i class="fas fa-mars"></i>
+                    </label>
+                    <label asp-for="Gender" class="btn btn-light btn-pill active btn-md form-check-label">
+                        <input class="form-check-input" autocomplete="off" asp-for="Gender" type="radio" name="Gender" value="false" />Female <i class="fas fa-venus"></i>
+                    </label>
                 </div>
+                <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Weight"></label>
@@ -41,9 +44,9 @@
     </div>
 </div>
 
-<div class="card container col-md-5 float-right">
+<div class="container col-md-5 float-right">
     <h1 style="margin: 2%; text-align: center;">Results</h1>
-    <table class="table">
+    <table class="table card border rounded-lg">
         <thead>
             <tr>
                 <th scope="col">Calories:</th>

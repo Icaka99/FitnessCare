@@ -28,9 +28,9 @@
                 <div class="card commented-section mt-2 border rounded-lg offset-@counter">
                     <div class="d-flex flex-row align-items-center commented-user">
                         <img class="img-fluid img-responsive rounded-circle mr-2" src="@comment.User.ProfilePictureUrl" alt="ProfilePicture" width="50">
-                        <h5 class="mr-2">@comment.UserUsername</h5><span class="dot mb-1"></span><span class="mb-1 ml-2"><time datetime="@comment.CreatedOn.ToString("O")"></time></span>
+                        <h5 class="mr-2">@comment.UserUsername</h5><span class="mb-1 ml-2"><time datetime="@comment.CreatedOn.ToString("O")"></time></span>
                     </div>
-                    <div class="comment-text-sm"><span>@comment.Content</span></div>
+                    <div class="border rounded-lg"><span>@comment.Content</span></div>
                     <div class="reply-section">
                         <button class="btn btn-primary ml-2 mt-1" onclick="showAddCommentForm(@comment.Id)">Reply</button>
                     </div>
@@ -69,7 +69,7 @@
                     <div class="d-flex flex-row align-items-center align-content-center post-title"><span class="mr-2 comments">Comments: @Model.CommentsCount</span><time datetime="@Model.CreatedOn.ToString("O")"></time></div>
                     <div class="comment-text-sm">
                         <hr />
-                        <span>
+                        <span class="border rounded-lg">
                             @Model.Content
                         </span>
                     </div>
@@ -80,8 +80,8 @@
             <div class="coment-bottom bg-white p-2 px-4">
 
                 <!-- Comment section -->
-                <div class="card d-flex flex-row add-comment-section mt-4 mb-4">
-                    <img class="img-fluid img-responsive rounded-circle mr-2" src="@user.ProfilePictureUrl" width="38" />
+                <div class="card add-comment-section mt-4 mb-4">
+                    <img class="rounded-circle" src="@user.ProfilePictureUrl" width="70" />
                     <form asp-controller="Comments" asp-action="Create" method="post" form-control>
                         <input type="hidden" name="PostId" value="@Model.Id" />
                         <div class="form-group">
@@ -95,8 +95,6 @@
                 </div>
 
                 @{await DisplayComments(null); }
-                <!-- Single comment -->
-                <!-- Single comment -->
                 
             </div>
         </div>
