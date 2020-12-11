@@ -51,11 +51,142 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; @DateTime.Now.Year - @GlobalConstants.SystemName - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <!-- Footer -->
+    <footer class="page-footer font-small bg-light">
+
+        <!-- Footer Links -->
+        <div class="container text-center text-md-left">
+
+            <!-- Grid row -->
+            <div class="row">
+
+                <!-- Grid column -->
+                <div class="col-md-4 col-lg-3 mr-auto my-md-4 my-0 mt-4 mb-1">
+
+                    <!-- Content -->
+                    <h5 class="font-weight-bold text-uppercase mb-4">Thank you!</h5>
+                    <p>Thank you for visiting our website! It was pleasure to have you around here :-)</p>
+                    <p>
+                        You can share it with your friends, because more content and funcionality is coming soon!
+                        Have a great day! <i class="far fa-smile-beam"></i>
+
+                    </p>
+
+                </div>
+                <!-- Grid column -->
+
+                <hr class="clearfix w-100 d-md-none">
+
+                <!-- Grid column -->
+                <div class="col-md-2 col-lg-2 mx-auto my-md-4 my-0 mt-4 mb-1">
+
+                    <!-- Links -->
+                    <h5 class="font-weight-bold text-uppercase mb-4">Helpful links</h5>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <p>
+                                <a asp-area="" asp-controller="Blog" asp-action="Blog" asp-route-id="@GlobalConstants.DefaultBlogPage">BLOG</a>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <a asp-area="" asp-controller="Forum" asp-action="Forum">FORUM</a>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <a asp-area="" asp-controller="Calculator" asp-action="Calculator">CALCULATOR</a>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <a asp-area="" asp-controller="Scheduler" asp-action="Scheduler" asp-route-year="@(DateTime.UtcNow.Year)" asp-route-month="@(DateTime.UtcNow.Month)">SCHEDULER</a>
+                            </p>
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- Grid column -->
+
+                <hr class="clearfix w-100 d-md-none">
+
+                <!-- Grid column -->
+                <div class="col-md-4 col-lg-3 mx-auto my-md-4 my-0 mt-4 mb-1">
+
+                    <!-- Contact details -->
+                    <h5 class="font-weight-bold text-uppercase mb-4">Address</h5>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <p>
+                                <i class="fas fa-home mr-3"></i> Sofiq, Studentski-grad, BG
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <i class="fas fa-envelope mr-3"></i> kisimovhristo@gmail.com
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <i class="fas fa-phone mr-3"></i> +359 8891 88 905
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <i class="fas fa-print mr-3"></i> + 01 234 567 89
+                            </p>
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- Grid column -->
+
+                <hr class="clearfix w-100 d-md-none">
+
+                <!-- Grid column -->
+                <div class="col-md-2 col-lg-2 justify-content-center mx-auto my-4">
+
+                    <!-- Social buttons -->
+                    <h5 class="font-weight-bold text-uppercase mb-4">Follow Us</h5>
+
+                    <div class="justify-content-center row col-lg-10">
+                        <!-- Facebook -->
+                        <a href="https://www.facebook.com/hristo.kisimov" type="button" class="btn btn-lg btn-light btn-pill my-1" target="_blank">
+                            <i class="fab fa-facebook-square"></i>
+                        </a>
+                        <!-- Twitter -->
+                        <a href="https://www.instagram.com/hristokisimov" type="button" class="btn btn-lg btn-light btn-pill my-1" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <!-- Google +-->
+                        <a href="https://www.linkedin.com/in/hristo-kisimov-0248481b0" type="button" class="btn btn-lg btn-light btn-pill my-1" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <!-- Dribbble -->
+                        <a href="https://github.com/Icaka99" type="button" class="btn btn-lg btn-light btn-pill my-1" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Grid row -->
+
         </div>
+        <!-- Footer Links -->
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">
+            © 2020 Copyright:
+            <a href="#"> FitnessCare</a>
+        </div>
+        <!-- Copyright -->
+
     </footer>
+    <!-- Footer -->
 
     <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js" asp-append-version="true"></script>
@@ -66,12 +197,12 @@
     <script src="~/js/demo.js" asp-append-version="true"></script>
     <script src="~/lib/moment/min/moment-with-locales.min.js" asp-append-version="true"></script>
     <script src="~/lib/snowflakes/dist/snowflakes.min.js" asp-append-version="true"></script>
-        <script>var sf = new Snowflakes({
-                color: "#4216bb",
-                minOpacity: 0.5,
-                minSize: 1,
-                maxSize: 20
-            });</script>
-        @await this.RenderSectionAsync("Scripts", required: false)
-    </body>
+    <script>var sf = new Snowflakes({
+            color: "#4216bb",
+            minOpacity: 0.5,
+            minSize: 1,
+            maxSize: 20
+        });</script>
+    @await this.RenderSectionAsync("Scripts", required: false)
+</body>
 </html>

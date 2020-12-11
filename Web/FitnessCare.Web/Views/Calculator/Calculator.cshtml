@@ -2,81 +2,84 @@
 @using FitnessCare.Data.Models
 @model CalculatorInputModel
 
-<div class="container col-md-5 float-left">
-    <h1 style="margin: 2%; text-align: center;">Calculate Calories</h1>
-    <div class="card border rounded-lg" style="padding: 5%;">
+    <div class="row">
+        <div class="container col-md-6 float-left">
+            <h1 style="margin: 2%; text-align: center;">Calculate Calories</h1>
+            <div class="card border rounded-lg" style="padding: 5%;">
 
-        <form method="post">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <div class="input-group btn-group">
-                    <label asp-for="Gender" class="btn btn-light btn-pill active btn-md form-check-label">
-                        <input class="form-check-input" autocomplete="off" asp-for="Gender" type="radio" name="Gender" value="true" />Male <i class="fas fa-mars"></i>
-                    </label>
-                    <label asp-for="Gender" class="btn btn-light btn-pill active btn-md form-check-label">
-                        <input class="form-check-input" autocomplete="off" asp-for="Gender" type="radio" name="Gender" value="false" />Female <i class="fas fa-venus"></i>
-                    </label>
-                </div>
-                <span asp-validation-for="Gender" class="text-danger"></span>
+                <form method="post">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <div class="input-group btn-group">
+                            <label asp-for="Gender" class="btn btn-light btn-pill active btn-md form-check-label">
+                                <input class="form-check-input" autocomplete="off" asp-for="Gender" type="radio" name="Gender" value="true" />Male <i class="fas fa-mars"></i>
+                            </label>
+                            <label asp-for="Gender" class="btn btn-light btn-pill active btn-md form-check-label">
+                                <input class="form-check-input" autocomplete="off" asp-for="Gender" type="radio" name="Gender" value="false" />Female <i class="fas fa-venus"></i>
+                            </label>
+                        </div>
+                        <span asp-validation-for="Gender" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Weight"></label>
+                        <input asp-for="Weight" class="form-control" name="Weight" placeholder="Weight" id="Weight" />
+                        <span asp-validation-for="Weight" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Height"></label>
+                        <input asp-for="Height" class="form-control" name="Height" placeholder="Height" id="Height" />
+                        <span asp-validation-for="Height" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Age"></label>
+                        <input asp-for="Age" class="form-control" name="Age" placeholder="Age" id="Age" />
+                        <span asp-validation-for="Age" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Activity"></label>
+                        <select asp-for="Activity" class="form-control" name="Activity" id="Activity" asp-items="@Html.GetEnumSelectList<ActivityEnum>()"></select>
+                        <span asp-validation-for="Activity" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary text-uppercase">Calculate</button>
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="Weight"></label>
-                <input asp-for="Weight" class="form-control" name="Weight" placeholder="Weight" id="Weight" />
-                <span asp-validation-for="Weight" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Height"></label>
-                <input asp-for="Height" class="form-control" name="Height" placeholder="Height" id="Height" />
-                <span asp-validation-for="Height" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Age"></label>
-                <input asp-for="Age" class="form-control" name="Age" placeholder="Age" id="Age" />
-                <span asp-validation-for="Age" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Activity"></label>
-                <select asp-for="Activity" class="form-control" name="Activity" id="Activity" asp-items="@Html.GetEnumSelectList<ActivityEnum>()"></select>
-                <span asp-validation-for="Activity" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-primary text-uppercase">Calculate</button>
-        </form>
+        </div>
+
+        <div class="container col-md-6 float-right">
+            <h1 style="margin: 2%; text-align: center;">Results</h1>
+            <table class="table card border rounded-lg">
+                <thead>
+                    <tr>
+                        <th scope="col">Calories:</th>
+                        <th id="Calories" scope="col">-</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">To maintain your weight you need:</th>
+                        <th id="Calories1" scope="row">-</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">To lose 0.5 kg per week you need:</th>
+                        <th id="LoseHalf" scope="row">-</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">To lose 1 kg per week you need:</th>
+                        <th id="LoseOne" scope="row">-</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">To gain 0.5 kg per week you need:</th>
+                        <th id="GainHalf" scope="row">-</th>
+                    </tr>
+                    <tr>
+                        <th scope="row">To gain 1 kg per week you need:</th>
+                        <th id="GainOne" scope="row">-</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
     </div>
-</div>
 
-<div class="container col-md-5 float-right">
-    <h1 style="margin: 2%; text-align: center;">Results</h1>
-    <table class="table card border rounded-lg">
-        <thead>
-            <tr>
-                <th scope="col">Calories:</th>
-                <th id="Calories" scope="col">-</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">To maintain your weight you need:</th>
-                <th id="Calories1" scope="row">-</th>
-            </tr>
-            <tr>
-                <th scope="row">To lose 0.5 kg per week you need:</th>
-                <th id="LoseHalf" scope="row">-</th>
-            </tr>
-            <tr>
-                <th scope="row">To lose 1 kg per week you need:</th>
-                <th id="LoseOne" scope="row">-</th>
-            </tr>
-            <tr>
-                <th scope="row">To gain 0.5 kg per week you need:</th>
-                <th id="GainHalf" scope="row">-</th>
-            </tr>
-            <tr>
-                <th scope="row">To gain 1 kg per week you need:</th>
-                <th id="GainOne" scope="row">-</th>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-<script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
-<script src="~/js/CalculateCalories.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/js/CalculateCalories.min.js"></script>
