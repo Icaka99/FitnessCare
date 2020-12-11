@@ -10,5 +10,7 @@
         public IEnumerable<ArticleViewModel> RandomArticles { get; set; }
 
         public IEnumerable<CategoryViewModel> RandomCategories { get; set; }
+
+        public QuoteViewModel RandomQuote { get; set; }
     }
 }

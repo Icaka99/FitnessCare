@@ -4,35 +4,52 @@
     this.ViewData["Title"] = "Home Page";
 }
 
+<head>
+    <link href="~/css/quoteIcon.css" rel="stylesheet">
+</head>
+
 <div class="text-center">
+
     <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
+
+    <div class="row text-left">
+        <div class="col-lg-6 mx-auto">
+            <blockquote class="blockquote blockquote-custom bg-white p-5 shadow rounded">
+                <div class="blockquote-custom-icon bg-info shadow-sm"><i class="fa fa-quote-left text-white"></i></div>
+                <p class="mb-0 mt-2 font-italic">"@Model.RandomQuote.Content"</p>
+                <footer class="blockquote-footer pt-4 mt-4 border-top">
+                    @Model.RandomQuote.AuthorName
+                </footer>
+            </blockquote>
+
+        </div>
+    </div>
 
     <h2>Check out our articles:</h2>
     <div class="row">
         @foreach (var article in Model.RandomArticles)
         {
-            <div class="card col-md-3">
-                <img class="card-img-top" src="@article.ImageUrl" style="width: 250px" alt="@article.Title">
-                <div class="card-body">
-                    <h4 class="card-title">@article.Title</h4>
-                    <p class="card-text">@article.ShortContent</p>
-                    <a asp-controller="Articles" asp-action="Article" asp-route-id="@article.Id" class="btn btn-primary">Read More</a>
-                </div>
-            </div>
-        }
+<div class="card col-md-3">
+    <img class="card-img-top" src="@article.ImageUrl" style="width: 250px" alt="@article.Title">
+    <div class="card-body">
+        <h4 class="card-title">@article.Title</h4>
+        <p class="card-text">@article.ShortContent</p>
+        <a asp-controller="Articles" asp-action="Article" asp-route-id="@article.Id" class="btn btn-primary">Read More</a>
+    </div>
+</div>}
     </div>
     <hr />
     <h2>Check out our forum posts:</h2>
     <div class="row">
         @foreach (var category in Model.RandomCategories)
         {
-    <div class="card col-md-3">
-        <img class="card-img-top" src="@category.ImageURL" style="width: 250px" alt="@category.Name">
-        <div class="card-body">
-            <h4 class="card-title">@category.Name</h4>
-            <p class="card-text">@category.ShortDescription</p>
-            <a asp-controller="Categories" asp-action="Category" asp-route-id="@category.Id" class="btn btn-primary">Read More</a>
-        </div>
-    </div>}
+<div class="card col-md-3">
+    <img class="card-img-top" src="@category.ImageURL" style="width: 250px" alt="@category.Name">
+    <div class="card-body">
+        <h4 class="card-title">@category.Name</h4>
+        <p class="card-text">@category.ShortDescription</p>
+        <a asp-controller="Categories" asp-action="Category" asp-route-id="@category.Id" class="btn btn-primary">Read More</a>
+    </div>
+</div>}
     </div>
 </div>

@@ -11,11 +11,13 @@
     {
         private readonly IArticleService articlesService;
         private readonly ICategoryService categoryService;
+        private readonly IQuotesService quotesService;
 
-        public HomeController(IArticleService articlesService, ICategoryService categoryService)
+        public HomeController(IArticleService articlesService, ICategoryService categoryService, IQuotesService quotesService)
         {
             this.articlesService = articlesService;
             this.categoryService = categoryService;
+            this.quotesService = quotesService;
         }
 
         public IActionResult Index()
@@ -24,6 +26,7 @@
             {
                 RandomArticles = this.articlesService.GetRandomArticles(4),
                 RandomCategories = this.categoryService.GetRandomCategories(4),
+                RandomQuote = this.quotesService.GetRandomQuote(),
             };
 
             return this.View(indexViewModel);
