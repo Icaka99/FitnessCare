@@ -2,6 +2,13 @@
     <link rel="stylesheet" href="~/css/scheduler.css">
 </head>
 
-<a class="btn btn-primary" asp-controller="Scheduler" asp-action="AddWorkout">Add workout</a>
+<div class="d-flex justify-content-center">
+    <a class="btn btn-success btn-pill my-3 col-md-6" asp-controller="Scheduler" asp-action="AddWorkout">Add workout <i class="far fa-plus-square"></i></a>
+</div>
 
-<calendar month="12" year="2020" events="@Model" />
+<div class="btn-group col-md-12 my-3">
+    <a class="btn btn-light btn-pill border" asp-controller="Scheduler" asp-action="Scheduler" asp-route-year="@Model.Year" asp-route-month="@(Model.Month - 1)">Previous month <i class="far fa-calendar-minus"></i></a>
+    <a class="btn btn-light btn-pill" asp-controller="Scheduler" asp-action="Scheduler" asp-route-year="@Model.Year" asp-route-month="@(Model.Month + 1)">Next month <i class="far fa-calendar-plus"></i></a>
+</div>
+
+<calendar month="@Model.Month" year="@Model.Year" events="@Model.Events" />

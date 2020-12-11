@@ -36,7 +36,7 @@
                             <a class="nav-link" asp-area="" asp-controller="Contacts" asp-action="Contact">Contact us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Scheduler" asp-action="Scheduler">Scheduler</a>
+                            <a class="nav-link" asp-area="" asp-controller="Scheduler" asp-action="Scheduler" asp-route-year="@(DateTime.UtcNow.Year)" asp-route-month="@(DateTime.UtcNow.Month)">Scheduler</a>
                         </li>
                     </ul>
                 </div>

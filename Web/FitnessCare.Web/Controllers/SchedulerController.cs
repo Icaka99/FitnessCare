@@ -6,6 +6,7 @@
 
     using FitnessCare.Data.Models;
     using FitnessCare.Services.Data;
+    using FitnessCare.Web.ViewModels.Scheduler;
     using FitnessCare.Web.ViewModels.Workouts;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -21,9 +22,25 @@
             this.workoutService = workoutService;
         }
 
-        public IActionResult Scheduler()
+        public IActionResult Scheduler([FromRoute]int year, int month)
         {
-            var events = this.workoutService.GetEvents();
+            if (month < 1)
+            {
+                year--;
+                month = 12;
+            }
+            else if (month > 12)
+            {
+                year++;
+                month = 1;
+            }
+
+            var events = new SchedulerViewModel
+            {
+                Events = this.workoutService.GetEvents(),
+                Month = month,
+                Year = year,
+            };
 
             return this.View(events);
         }
