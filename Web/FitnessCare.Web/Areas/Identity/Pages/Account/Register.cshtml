@@ -13,27 +13,35 @@
             <hr />
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Input.Email"></label>
+                <label class="font-weight-bold" asp-for="Input.Username"></label>
+                <input asp-for="Input.Username" class="form-control" />
+                <span asp-validation-for="Input.Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="font-weight-bold" asp-for="Input.Email"></label>
                 <input asp-for="Input.Email" class="form-control" />
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Input.Password"></label>
+                <label class="font-weight-bold" asp-for="Input.Password"></label>
                 <input asp-for="Input.Password" class="form-control" />
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Input.ConfirmPassword"></label>
+                <label class="font-weight-bold" asp-for="Input.ConfirmPassword"></label>
                 <input asp-for="Input.ConfirmPassword" class="form-control" />
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
+            <p class="font-weight-bold">Profile picture</p>
             <div class="custom-file">
-                <input type="file" accept="image/*" asp-for="Input.PictureFile" class="custom-file-input" id="inputGroupFile01"
+                <input type="file" accept="image/*" asp-for="Input.PictureFile" class="custom-file-input"
                        aria-describedby="inputGroupFileAddon01">
-                <label class="custom-file-label" for="inputGroupFile01">Choose image</label>
+                <label class="custom-file-label" asp-for="Input.PictureFile"></label>
                 <span asp-validation-for="Input.PictureFile" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-primary">Register</button>
+            <div class="form-group my-3">
+                <button type="submit" class="btn btn-primary">Register</button>
+            </div>
         </form>
     </div>
     <div class="col-md-6 col-md-offset-2">
