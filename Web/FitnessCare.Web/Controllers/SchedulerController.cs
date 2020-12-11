@@ -8,6 +8,7 @@
     using FitnessCare.Services.Data;
     using FitnessCare.Web.ViewModels.Scheduler;
     using FitnessCare.Web.ViewModels.Workouts;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
@@ -22,8 +23,17 @@
             this.workoutService = workoutService;
         }
 
-        public IActionResult Scheduler([FromRoute]int year, int month)
+        public async Task<IActionResult> Scheduler([FromRoute]int year, int month)
         {
+            var user = await this.userManager.GetUserAsync(this.User);
+
+            string userId = string.Empty;
+
+            if (this.User.Identity.IsAuthenticated)
+            {
+                userId = user.Id;
+            }
+
             if (month < 1)
             {
                 year--;
@@ -37,7 +47,7 @@
 
             var events = new SchedulerViewModel
             {
-                Events = this.workoutService.GetEvents(),
+                Events = this.workoutService.GetEvents(userId),
                 Month = month,
                 Year = year,
             };
@@ -45,6 +55,7 @@
             return this.View(events);
         }
 
+        [Authorize]
         public IActionResult AddWorkout()
         {
             var model = new WorkoutInputModel();
@@ -55,6 +66,7 @@
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> AddWorkout(WorkoutInputModel model)
         {
             var userId = this.userManager.GetUserId(this.User);
@@ -75,6 +87,7 @@
             return this.RedirectToAction("AddExerciseToWorkout", "Scheduler", new { id = model.Id });
         }
 
+        [Authorize]
         public IActionResult AddExerciseToWorkout()
         {
             var model = new ExerciseInputModel();
@@ -85,6 +98,7 @@
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> AddExerciseToWorkout(ExerciseInputModel model)
         {
             if (!this.ModelState.IsValid)
@@ -101,6 +115,7 @@
             return this.RedirectToAction("AddExerciseToWorkout", "Scheduler", new { id = model.WorkoutId });
         }
 
+        [Authorize]
         public IActionResult Workout([FromRoute] string id)
         {
             int workoutId = this.workoutService.GetWorkoutIdFromDate(id);

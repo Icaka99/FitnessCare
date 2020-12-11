@@ -5,6 +5,7 @@
     using System.IO;
     using System.Threading.Tasks;
 
+    using CommandLine;
     using FitnessCare.Data;
     using FitnessCare.Data.Common;
     using FitnessCare.Data.Common.Repositories;
@@ -13,9 +14,6 @@
     using FitnessCare.Data.Seeding;
     using FitnessCare.Services.Data;
     using FitnessCare.Services.Messaging;
-
-    using CommandLine;
-
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;

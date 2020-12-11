@@ -8,11 +8,6 @@
 
     <title>Blog Post - Start Bootstrap Template</title>
 
-    <!-- Bootstrap core CSS -->
-    <!--<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
-    <!-- Custom styles for this template -->
-    <!--<link href="css/blog-post.css" rel="stylesheet">-->
-
 </head>
 
 @{
@@ -23,7 +18,7 @@
     {
         var comments = ((IEnumerable<dynamic>)this.Model.Comments).Where(x => x.ParentId == parentId);
 
-        
+
         if (!comments.Any())
         {
             counter = 1;
@@ -38,27 +33,29 @@
                 {
                     counter = 0;
                 }
-                    <div class="card rounded-lg border shadow-lg mt-4 mb-4 mr-4 py-3 px-3 offset-@counter">
-                        <div class="media mb-4">
-                            <img class="d-flex mr-3 rounded-circle" src="@comment.User.ProfilePictureUrl" style="width: 70px" alt="ProfilePicture">
-                            <div class="media-body">
-                                <h5 class="mt-0">
-                                    @if (parentId != null)
-                                    {
-                                        @("Reply to -> " + comment.Parent.UserUsername)
+                <div class="card rounded-lg border shadow-lg mt-4 mb-4 mr-4 py-3 px-3 offset-@counter">
+                    <div class="media mb-4">
+                        <img class="d-flex mr-3 rounded-circle" src="@comment.User.ProfilePictureUrl" style="width: 70px" alt="ProfilePicture">
+                        <div class="media-body">
+                            <h5 class="mt-0">
+                                @if (parentId != null)
+                                {
+                                    @("Reply to -> " + comment.Parent.UserUsername)
                                     <h6>
                                         @("From: " + comment.UserUsername)
                                     </h6>
-                                    }
-                                    else
-                                    {
-                                        @comment.UserUsername
-                                    }
-                                </h5>
-                                <h6 class="mt-0"><time datetime="@comment.CreatedOn.ToString("O")"></time></h6>
-                                @comment.Content
-                            </div>
+                                }
+                                else
+                                {
+                                    @comment.UserUsername
+                                }
+                            </h5>
+                            <h6 class="mt-0"><time datetime="@comment.CreatedOn.ToString("O")"></time></h6>
+                            @comment.Content
                         </div>
+                    </div>
+                    @if (this.User.Identity.IsAuthenticated)
+                    {
                         <div class="offset-10">
                             <button type="submit" class="btn btn-primary" onclick="showAddCommentForm(@comment.Id)">Reply</button>
                         </div>
@@ -76,8 +73,9 @@
                                 </div>
                             </form>
                         </div>
-                    
-                    </div>
+                    }
+
+                </div>
 
                 counter++;
 
@@ -123,7 +121,7 @@
                 </p>
 
                 <div>
-                    <img class="rounded" src="@Model.ImageUrl" width="700"/>
+                    <img class="rounded" src="@Model.ImageUrl" width="700" />
                 </div>
 
                 <!-- Content -->
@@ -132,19 +130,22 @@
                 </div>
 
                 <!-- Comments Form -->
-                <div class="card my-4 shadow-lg">
-                    <h5 class="card-header">Leave a Comment:</h5>
-                    <div class="card-body">
-                        <form asp-controller="Comments" asp-action="Create" method="post">
-                            <input type="hidden" name="ArticleId" value="@Model.Id" />
-                            <div class="form-group">
-                                <label for="Content"></label>
-                                <textarea name="Content" id="Content" class="form-control" placeholder="Content" rows="3"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary offset-10">AddComment</button>
-                        </form>
+                @if (this.User.Identity.IsAuthenticated)
+                {
+                    <div class="card my-4 shadow-lg">
+                        <h5 class="card-header">Leave a Comment:</h5>
+                        <div class="card-body">
+                            <form asp-controller="Comments" asp-action="Create" method="post">
+                                <input type="hidden" name="ArticleId" value="@Model.Id" />
+                                <div class="form-group">
+                                    <label for="Content"></label>
+                                    <textarea name="Content" id="Content" class="form-control" placeholder="Content" rows="3"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary offset-10">AddComment</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
+                }
 
                 <!-- Single Comment -->
                 @{await DisplayComments(null); }
@@ -155,15 +156,18 @@
             <div class="col-md-4">
 
                 <!-- Search Widget -->
-                <div class="card my-4 shadow-lg">
+                <div class="card my-4">
                     <h5 class="card-header">Search</h5>
                     <div class="card-body">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-append">
-                                <button class="btn btn-secondary" type="button">Go!</button>
-                            </span>
-                        </div>
+                        <form asp-action="List" method="get">
+                            <div class="input-group">
+                                <label for="SearchString"></label>
+                                <input type="text" class="form-control" name="SearchString" placeholder="Search for...">
+                                <span class="input-group-append">
+                                    <button class="btn btn-secondary" asp-controller="Blog" asp-action="List" type="submit">Go!</button>
+                                </span>
+                            </div>
+                        </form>
                     </div>
                 </div>
 
@@ -256,8 +260,7 @@
 </body>
 
 @section Scripts {
-    <script>
-        function showAddCommentForm(parentId) {
+    <script>function showAddCommentForm(parentId) {
             $("#" + parentId + " input[name = 'ParentId']").val(parentId);
             $("#" + parentId).toggle();
         }

@@ -139,9 +139,10 @@
             return id;
         }
 
-        public List<CalendarEvent> GetEvents()
+        public List<CalendarEvent> GetEvents(string userId)
         {
             var workouts = this.db.Workouts
+                .Where(x => x.UserId == userId)
                 .OrderByDescending(x => x.CreatedOn)
                 .Select(x => new CalendarEvent
                 {

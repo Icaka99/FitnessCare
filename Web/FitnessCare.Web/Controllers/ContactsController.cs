@@ -39,6 +39,8 @@
 
             await this.SendEmail(model);
 
+            this.TempData["Message"] = "Successfully sent E-mail. Thank You!";
+
             return this.Redirect("/Home/Index");
         }
 

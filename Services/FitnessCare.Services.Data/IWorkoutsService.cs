@@ -20,6 +20,6 @@
 
         int GetWorkoutIdFromDate(string date);
 
-        List<CalendarEvent> GetEvents();
+        List<CalendarEvent> GetEvents(string userId);
     }
 }
