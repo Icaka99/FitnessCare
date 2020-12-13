@@ -29,7 +29,6 @@
             };
 
             await this.db.Comments.AddAsync(comment);
-            //this.db.Users.FirstOrDefault(x => x.Id == input.UserId).Comments.Add(comment);
             if (input.ArticleId == 0)
             {
                 this.db.Posts.FirstOrDefault(x => x.Id == input.PostId).Comments.Add(comment);

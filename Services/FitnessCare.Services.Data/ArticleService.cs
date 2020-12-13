@@ -60,8 +60,6 @@
                     CreatedOn = x.CreatedOn,
                     Id = x.Id,
                     UserUserName = x.User.UserName,
-                    VotesCount = x.Votes.Count,
-                    Comments = x.Comments,
                     ImageUrl = x.ImageUrl,
                 }).ToList();
         }
@@ -78,8 +76,6 @@
                     CreatedOn = x.CreatedOn,
                     Id = x.Id,
                     UserUserName = x.User.UserName,
-                    VotesCount = x.Votes.Count,
-                    Comments = x.Comments,
                     ImageUrl = x.ImageUrl,
                 }).ToList();
 
@@ -91,11 +87,8 @@
             return this.db.Articles.Select(x => new ArticleViewModel
             {
                 Title = x.Title,
-                Content = x.Content,
                 CreatedOn = x.CreatedOn,
                 Id = x.Id,
-                VotesCount = x.Votes.Count,
-                Comments = x.Comments,
                 ImageUrl = x.ImageUrl,
             })
             .OrderByDescending(x => x.CreatedOn)
@@ -151,11 +144,8 @@
                     Title = x.Title,
                     Id = x.Id,
                     ImageUrl = x.ImageUrl,
-                    CommentsCount = x.Comments.Count,
-                    VotesCount = x.Votes.Count,
                     Content = x.Content,
                     CreatedOn = x.CreatedOn,
-                    UserUserName = x.User.UserName,
                 })
                 .ToList();
         }
