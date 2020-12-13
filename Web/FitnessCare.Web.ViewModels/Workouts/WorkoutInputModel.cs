@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-
+    using FitnessCare.Web.Infrastructure;
     using Microsoft.AspNetCore.Mvc.Rendering;
 
     public class WorkoutInputModel
@@ -21,6 +21,9 @@
         public int Duration { get; set; }
 
         public string UserId { get; set; }
+
+        [GoogleReCaptchaValidation]
+        public string RecaptchaValue { get; set; }
 
         public IEnumerable<SelectListItem> Types { get; set; }
     }

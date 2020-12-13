@@ -25,9 +25,22 @@
                 </div>
                 <input type="hidden" id="RecaptchaValue" name="RecaptchaValue" />
                 <div class="form-group">
+                    <input type="hidden" id="RecaptchaValue" name="RecaptchaValue" />
                     <button type="submit" class="btn btn-primary text-uppercase">Submit</button>
                 </div>
             </form>
         </div>
     </div>
 </section>
+
+@section Scripts
+{
+    <script src="https://www.google.com/recaptcha/api.js?render=@this.Configuration["GoogleReCaptcha:Key"]"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@this.Configuration["GoogleReCaptcha:Key"]', { action: 'contact_form' }).then(function (token) {
+                document.getElementById("RecaptchaValue").value = token;
+            });
+        });
+    </script>
+}

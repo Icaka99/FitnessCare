@@ -35,25 +35,30 @@
                 <a class="btn btn-success form-group" onclick="AddSet()">Add Set</a>
             </div>
             <div class="form-group">
+                <input type="hidden" id="RecaptchaValue" name="RecaptchaValue" />
                 <button type="submit" class="btn btn-primary">Add Exercise</button>
             </div>
         </form>
         <div>
-            <a asp-controller="Scheduler" asp-action="Scheduler" class="btn btn-primary">Finish</a>
+            <a asp-controller="Scheduler" asp-action="Scheduler" asp-route-year="@(DateTime.UtcNow.Year)" asp-route-month="@(DateTime.UtcNow.Month)" class="btn btn-warning">Finish</a>
         </div>
     </div>
 </div>
 
 @section Scripts {
+    <script src="https://www.google.com/recaptcha/api.js?render=@this.Configuration["GoogleReCaptcha:Key"]"></script>
     <script>
-        var setIndex = 0;
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@this.Configuration["GoogleReCaptcha:Key"]', { action: 'contact_form' }).then(function (token) {
+                document.getElementById("RecaptchaValue").value = token;
+            });
+        });
     </script>
+    <script>var setIndex = 0;</script>
 
-    <script>
-        function AddSet() {
+    <script>function AddSet() {
             $("#SetsContainer").append(`<div class="form - group" id="Sets${setIndex}">Set${setIndex + 1}Reps:<input type="text" name="Sets[${setIndex}].Reps" /> <span asp-validation-for="Sets[${setIndex}.Reps]" class="text-danger"></span></div ><br />`);
 
             setIndex++;
-        }
-    </script>
+        }</script>
 }

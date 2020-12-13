@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using FitnessCare.Web.Infrastructure;
     using Microsoft.AspNetCore.Mvc.Rendering;
 
     public class ExerciseInputModel
@@ -17,6 +18,9 @@
         public int MuscleGroup { get; set; }
 
         public int WorkoutId { get; set; }
+
+        [GoogleReCaptchaValidation]
+        public string RecaptchaValue { get; set; }
 
         [Required(ErrorMessage = "Please, add atleast 1 set!")]
         public ICollection<SetInputModel> Sets { get; set; }
