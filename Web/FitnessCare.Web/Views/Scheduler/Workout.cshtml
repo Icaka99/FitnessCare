@@ -1,39 +1,38 @@
 ﻿@model FitnessCare.Web.ViewModels.Workouts.WorkoutViewModel
 
 <div>
-    <div>
-        <img class="rounded" src="@Model.User.ProfilePictureUrl" width="150"/>
+    <h1 class="text-center">@Model.WorkoutType.Name Workout</h1>
+
+    <div class="text-center">
+        <img class="rounded" src="@Model.User.ProfilePictureUrl" width="150" />
     </div>
-    <div>
-        @Model.Date
+    <div class="text-center h2">
+        <span class="badge badge-primary text-wrap">Made on:</span><time datetime="@Model.Date.ToString("O")"></time>
     </div>
-    <div>
-        @Model.Duration
+    <div class="text-center h2">
+        <span class="badge badge-primary text-wrap">Duration:</span>@Model.Duration minutes
     </div>
-    <div>
-        @Model.WorkoutType.Name
-    </div>
-    <div>
-        @Model.UserUserName
+    <div class="text-center h2">
+        <span class="badge badge-primary text-wrap">By:</span> @Model.UserUserName
     </div>
 
-    <div id="accordion">
+    <div id="accordion" class="text-center">
         @foreach (var exercise in Model.Exercises)
         {
             int index = 1;
 
-            <div class="card">
+            <div>
                 <div class="card-header">
-                    <a class="card-link" data-toggle="collapse" href="#collapse@(exercise.Id)">
-                        @exercise.Name (@(exercise.MuscleGroup.Name))
-                    </a>
+                    <div class="collapsed card-link" data-toggle="collapse">
+                        <span class="font-weight-bold">@exercise.Name (@(exercise.MuscleGroup.Name)) - @exercise.Sets.Count() sets</span>
+                    </div>
                 </div>
                 <div id="collapse@(exercise.Id)" class="collapse show" data-parent="#accordion">
                     <div class="card-body">
                         @foreach (var set in exercise.Sets)
                         {
                             <div>
-                                <p>Set@(index++)Reps: @set.Reps</p>
+                                <p>Set(@(index++))Reps: <mark>@set.Reps</mark></p>
                             </div>
                         }
                     </div>

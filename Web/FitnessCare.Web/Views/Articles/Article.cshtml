@@ -51,7 +51,7 @@
                                 }
                             </h5>
                             <h6 class="mt-0"><time datetime="@comment.CreatedOn.ToString("O")"></time></h6>
-                            @comment.Content
+                            <span class="text-break">@comment.Content</span>
                         </div>
                     </div>
                     @if (this.User.Identity.IsAuthenticated)
@@ -125,7 +125,7 @@
                 </div>
 
                 <!-- Content -->
-                <div class="col-md-12">
+                <div class="col-md-12 text-break">
                     @Html.Raw(Model.SanitizedContent)
                 </div>
 
