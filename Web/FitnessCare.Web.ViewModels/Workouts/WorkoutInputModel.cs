@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
     using FitnessCare.Web.Infrastructure;
     using Microsoft.AspNetCore.Mvc.Rendering;
 

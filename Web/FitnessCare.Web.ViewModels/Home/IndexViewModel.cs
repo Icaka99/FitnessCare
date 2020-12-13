@@ -1,5 +1,5 @@
 ﻿namespace FitnessCare.Web.ViewModels.Home
-{ 
+{
     using System.Collections.Generic;
 
     using FitnessCare.Web.ViewModels.Blog;
