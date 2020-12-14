@@ -51,7 +51,7 @@
 
             this.TempData["Message"] = "Post added successfully";
 
-            return this.Redirect($"/Categories/Category?Id={input.CategoryId}");
+            return this.Redirect($"/Categories/Category/{input.CategoryId}");
         }
     }
 }
