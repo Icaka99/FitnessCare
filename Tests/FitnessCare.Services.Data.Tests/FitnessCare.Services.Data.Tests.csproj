@@ -38,6 +38,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\FitnessCare.Data\FitnessCare.Data.csproj" />
     <ProjectReference Include="..\..\Services\FitnessCare.Services.Data\FitnessCare.Services.Data.csproj" />
+    <ProjectReference Include="..\..\Web\FitnessCare.Web.ViewModels\FitnessCare.Web.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>
