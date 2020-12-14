@@ -33,7 +33,7 @@
             {
                 this.db.Posts.FirstOrDefault(x => x.Id == input.PostId).Comments.Add(comment);
             }
-            else
+            else if (input.PostId == 0)
             {
                 this.db.Articles.FirstOrDefault(x => x.Id == input.ArticleId).Comments.Add(comment);
             }
