@@ -1,0 +1,79 @@
+@model IEnumerable<FitnessCare.Web.ViewModels.Blog.AdministrationArticleViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="col-md-6">
+    <h1>Index</h1>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Content)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserUserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImageUrl)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsDeleted)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DeletedOn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedOn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModifiedOn)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Title)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ShortContent)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.UserUserName)
+    </td>
+    <td>]
+        <span class="text-break">@item.ImageUrl</span>
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.IsDeleted)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DeletedOn)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CreatedOn)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ModifiedOn)
+    </td>
+    <td>
+        <a asp-area="Administration" asp-controller="Articles" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+        <a asp-area="Administration" asp-controller="Articles" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+        <a asp-area="Administration" asp-controller="Articles" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+    </td>
+</tr>}
+        </tbody>
+    </table>
+</div>

@@ -43,7 +43,8 @@
                 {
                     Text = x.Name,
                     Value = x.Id.ToString(),
-                });
+                })
+                .OrderBy(x => x.Text);
 
             return model;
         }
@@ -55,7 +56,8 @@
                 {
                     Text = x.Name,
                     Value = x.Id.ToString(),
-                });
+                })
+                .OrderBy(x => x.Text);
 
             return model;
         }

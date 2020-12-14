@@ -65,6 +65,7 @@
     <Folder Include="Views\Scheduler\" />
     <Folder Include="Areas\Identity\Data\" />
     <Folder Include="CustomTagHelpers\" />
+    <Folder Include="Areas\Administration\Views\Administration\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml" />
@@ -75,6 +76,22 @@
     <Content Remove="Areas\Identity\Pages\Account\Manage\ShowRecoveryCodes.cshtml" />
     <Content Remove="Areas\Identity\Pages\Account\Manage\TwoFactorAuthentication.cshtml" />
     <Content Remove="Areas\Identity\Pages\Account\Manage\ResetAuthenticator.cshtml" />
+    <Content Remove="Areas\Administration\Views\Articles\Create.cshtml" />
+    <Content Remove="Areas\Administration\Views\Categories\Create.cshtml" />
+    <Content Remove="Areas\Administration\Views\Categories\Edit.cshtml" />
+    <Content Remove="Areas\Administration\Views\Categories\Details.cshtml" />
+    <Content Remove="Areas\Administration\Views\Categories\Delete.cshtml" />
+    <Content Remove="Areas\Administration\Views\Comments\Create.cshtml" />
+    <Content Remove="Areas\Administration\Views\Comments\Edit.cshtml" />
+    <Content Remove="Areas\Administration\Views\Votes\Create.cshtml" />
+    <Content Remove="Areas\Administration\Views\Exercises\Create.cshtml" />
+    <Content Remove="Areas\Administration\Views\WorkoutTypes\Edit.cshtml" />
+    <Content Remove="Areas\Administration\Views\Sets\Create.cshtml" />
+    <Content Remove="Areas\Administration\Views\Quotes\Create.cshtml" />
+    <Content Remove="Areas\Administration\Views\Quotes\Details.cshtml" />
+    <Content Remove="Areas\Administration\Views\Quotes\Edit.cshtml" />
+    <Content Remove="Areas\Administration\Views\Quotes\Delete.cshtml" />
+    <Content Remove="Areas\Administration\Views\Quotes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="wwwroot\css\error.css">
