@@ -11,10 +11,12 @@
         private const int ItemsPerPage = 5;
 
         private readonly IArticleService articleService;
+        private readonly ICategoryService categoryService;
 
-        public BlogController(IArticleService articleService)
+        public BlogController(IArticleService articleService, ICategoryService categoryService)
         {
             this.articleService = articleService;
+            this.categoryService = categoryService;
         }
 
         public IActionResult Blog(int id)
@@ -35,6 +37,7 @@
                 OrderedArticles = orderedArticles,
                 PageNumber = id,
                 SearchString = null,
+                Categories = this.categoryService.GetRandomCategories(6),
             };
 
             return this.View(model);

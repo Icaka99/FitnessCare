@@ -13,11 +13,13 @@
     {
         private readonly IArticleService articleService;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly ICategoryService categoryService;
 
-        public ArticlesController(IArticleService articleService, UserManager<ApplicationUser> userManager)
+        public ArticlesController(IArticleService articleService, UserManager<ApplicationUser> userManager, ICategoryService categoryService)
         {
             this.articleService = articleService;
             this.userManager = userManager;
+            this.categoryService = categoryService;
         }
 
         [Authorize]
@@ -43,11 +45,6 @@
             return this.Redirect("/Blog/Blog");
         }
 
-        public IActionResult ThankYou()
-        {
-            return this.View();
-        }
-
         public IActionResult Article(int id)
         {
             var article = this.articleService.GetDetails(id);
@@ -55,6 +52,8 @@
             {
                 return this.NotFound();
             }
+
+            article.Categories = this.categoryService.GetRandomCategories(6);
 
             return this.View(article);
         }

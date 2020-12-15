@@ -6,6 +6,7 @@
     using System.Text.RegularExpressions;
 
     using FitnessCare.Data.Models;
+    using FitnessCare.Web.ViewModels.Forum;
     using Ganss.XSS;
 
     public class ArticleViewModel
@@ -29,6 +30,8 @@
         public int CommentsCount { get; set; }
 
         public IEnumerable<Comment> Comments { get; set; }
+
+        public IEnumerable<CategoryViewModel> Categories { get; set; }
 
         public string ShortContent
         {

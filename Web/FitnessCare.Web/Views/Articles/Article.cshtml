@@ -101,7 +101,9 @@
                 <!-- Author -->
                 <p class="lead">
                     by
-                    <a href="#">@Model.UserUserName</a> <span>Posted on <time datetime="@Model.CreatedOn.ToString("O")"></time></span>
+                    <a href="#">@Model.UserUserName</a> <span>Posted on <time datetime="@Model.CreatedOn.ToString("O")"></time>
+
+                    </span>
                     @if (this.User.Identity.IsAuthenticated)
                     {
                         <div>
@@ -173,33 +175,17 @@
 
                 <!-- Categories Widget -->
                 <div class="card my-4 shadow-lg">
-                    <h5 class="card-header">Categories</h5>
+                    <h5 class="card-header">Categories in our Forum</h5>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <ul class="list-unstyled mb-0">
-                                    <li>
-                                        <a href="#">Web Design</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">HTML</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Freebies</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-6">
-                                <ul class="list-unstyled mb-0">
-                                    <li>
-                                        <a href="#">JavaScript</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">CSS</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Tutorials</a>
-                                    </li>
+                                    @foreach (var categorie in Model.Categories)
+                                    {
+                                        <li>
+                                            <a asp-controller="Categories" asp-action="Category" asp-route-Id="@categorie.Id">@categorie.Name</a>
+                                        </li>
+                                    }
                                 </ul>
                             </div>
                         </div>
@@ -207,12 +193,12 @@
                 </div>
 
                 <!-- Side Widget -->
-                <div class="card my-4 shadow-lg">
+                @*<div class="card my-4 shadow-lg">
                     <h5 class="card-header">Side Widget</h5>
                     <div class="card-body">
                         You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
                     </div>
-                </div>
+                </div>*@
 
                 @if (this.User.IsInRole(FitnessCare.Common.GlobalConstants.AdministratorRoleName))
                 {
