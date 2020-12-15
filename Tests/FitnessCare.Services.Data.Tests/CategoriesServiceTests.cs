@@ -121,7 +121,7 @@
         }
 
         [Fact]
-        public async Task GetDetailsShouldReturnCorrectDetailsAboutArticleById()
+        public async Task GetDetailsShouldReturnCorrectDetailsAboutCategoryById()
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
                 .UseInMemoryDatabase(Guid.NewGuid().ToString());
