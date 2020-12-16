@@ -82,7 +82,6 @@
             // Application services
             services.AddTransient<IEmailSender>(
                 serviceProvider => new SendGridEmailSender(this.configuration["SendGrid:ApiKey"]));
-            services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<IArticleService, ArticleService>();
             services.AddTransient<IVoteService, VoteService>();
             services.AddTransient<ICommentsService, CommentsService>();
@@ -111,6 +110,7 @@
             {
                 app.UseDeveloperExceptionPage();
                 app.UseMigrationsEndPoint();
+                app.UseHsts();
             }
             else
             {

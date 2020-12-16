@@ -24,8 +24,6 @@
         {
         }
 
-        public DbSet<Setting> Settings { get; set; }
-
         public DbSet<Article> Articles { get; set; }
 
         public DbSet<Category> Categories { get; set; }
