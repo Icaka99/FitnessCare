@@ -1,25 +1,24 @@
-﻿<head>
+﻿@model FitnessCare.Web.ViewModels.Home.IndexViewModel
+@using FitnessCare.Common
+
+<head>
     <link href="~/css/quoteIcon.css" rel="stylesheet">
 </head>
 
-@model FitnessCare.Web.ViewModels.Home.IndexViewModel
-@using FitnessCare.Common
-@{ this.ViewData["Title"] = "Home Page"; }
-
 <div id="demo-slider"></div>
 
+@{ this.ViewData["Title"] = "Home Page"; }
 
 <div class="text-center">
 
     @if (this.TempData.ContainsKey("Message"))
     {
-        <div class="alert alert-success alert-dismissable">
-            @this.TempData["Message"]
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-        </div>
-     }
+<div class="alert alert-success alert-dismissable">
+    @this.TempData["Message"]
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+</div>}
 
-    <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
+    <h1 class="display-4">Welcome to @GlobalConstants.SystemName</h1>
 
     <div class="row text-left">
         <div class="col-lg-6 mx-auto">

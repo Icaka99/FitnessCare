@@ -6,9 +6,8 @@
             <button type="button" class="close" data-dismiss="alert">&times;</button>
         </div>
     }
-    <a asp-controller="Categories" asp-action="AddPost" asp-route-id="@ViewContext.RouteData.Values["id"]" class="btn btn-primary">Add Post</a>
+    <a asp-controller="Categories" asp-action="AddPost" asp-route-id="@this.ViewContext.RouteData.Values["id"]" class="btn btn-primary">Add Post</a>
     <div class="card mb-3">
-        "
         <div class="card-header pl-0 pr-0">
             <div class="row no-gutters w-100 align-items-center">
                 <div class="col ml-3">Topics</div>
@@ -35,7 +34,16 @@
                             <div class="media col-8 align-items-center">
                                 <img src="@post.User.ProfilePictureUrl" alt="" class="rounded-circle" width="70">
                                 <div class="media-body flex-truncate ml-2">
-                                    <div class="line-height-1 text-truncate">1 day ago</div> <a href="javascript:void(0)" class="text-muted small text-truncate" data-abc="true">by @post.UserUserName</a>
+                                    <div class="line-height-1 text-truncate">
+                                        @if (post.ModifiedOn == null)
+                                        {
+                                            <span><i class="far fa-times-circle"></i></span>
+                                        }
+                                        else
+                                        {
+                                            <time datetime="@post.ModifiedOn.ToString("O")"></time>
+                                        }
+                                    </div> <a href="javascript:void(0)" class="text-muted small text-truncate" data-abc="true">by @post.UserUserName</a>
                                 </div>
                             </div>
                         </div>

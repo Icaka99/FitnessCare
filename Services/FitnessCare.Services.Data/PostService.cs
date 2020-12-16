@@ -48,6 +48,7 @@
                 Content = x.Content,
                 CommentsCount = x.Comments.Count,
                 CreatedOn = x.CreatedOn,
+                ModifiedOn = x.ModifiedOn,
                 UserUserName = x.User.UserName,
                 User = x.User,
                 CategoryId = x.CategoryId,
