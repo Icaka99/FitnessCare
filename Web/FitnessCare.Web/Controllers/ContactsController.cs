@@ -47,7 +47,7 @@
         private async Task SendEmail(ContactFormInputModel model)
         {
             await this.emailSender.SendEmailAsync(
-                            model.Email,
+                            GlobalConstants.SingleSenderEmail,
                             model.Name,
                             GlobalConstants.SystemEmail,
                             model.Title,
