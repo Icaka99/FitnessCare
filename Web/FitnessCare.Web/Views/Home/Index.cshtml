@@ -29,9 +29,15 @@
                     @Model.RandomQuote.AuthorName
                 </footer>
             </blockquote>
-
         </div>
     </div>
+
+    @if (this.User.IsInRole(FitnessCare.Common.GlobalConstants.AdministratorRoleName))
+    {
+        <div>
+            <a asp-controller="Quotes" asp-action="AddQuote" class="btn btn-primary">Add Quote</a>
+        </div>
+    }
 
     <h2>Check out our articles:</h2>
     <div class="row">
@@ -47,7 +53,7 @@
 </div>}
     </div>
     <hr />
-    <h2>Check out our forum posts:</h2>
+    <h2>Check out some posts in one of these categories:</h2>
     <div class="row">
         @foreach (var category in Model.RandomCategories)
         {
