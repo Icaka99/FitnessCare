@@ -126,18 +126,18 @@
             Assert.Equal(2, result);
         }
 
-        //[Fact]
-        //public async Task GetDetailsShouldReturnCorrectDetailsAboutPostById()
-        //{
+        // [Fact]
+        // public async Task GetDetailsShouldReturnCorrectDetailsAboutPostById()
+        // {
         //    var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
         //        .UseInMemoryDatabase(Guid.NewGuid().ToString());
         //    var dbContext = new ApplicationDbContext(optionsBuilder.Options);
 
-        //    var postService = new PostService(dbContext);
+        // var postService = new PostService(dbContext);
 
-        //    var user = new ApplicationUser { Id = "Icaka99", UserName = "Icaka99", };
+        // var user = new ApplicationUser { Id = "Icaka99", UserName = "Icaka99", };
 
-        //    var comments = new List<Comment>
+        // var comments = new List<Comment>
         //    {
         //        new Comment
         //        {
@@ -149,11 +149,11 @@
         //        },
         //    };
 
-        //    dbContext.Comments.AddRange(comments);
+        // dbContext.Comments.AddRange(comments);
 
-        //    await dbContext.Users.AddAsync(user);
+        // await dbContext.Users.AddAsync(user);
 
-        //    var firstPost = new Post
+        // var firstPost = new Post
         //    {
         //        Id = 5,
         //        Content = "testContent",
@@ -163,7 +163,7 @@
         //        User = user,
         //    };
 
-        //    var secondPost = new Post
+        // var secondPost = new Post
         //    {
         //        Id = 4,
         //        Content = "testContent1",
@@ -173,18 +173,18 @@
         //        User = user,
         //    };
 
-        //    await dbContext.Posts.AddAsync(firstPost);
+        // await dbContext.Posts.AddAsync(firstPost);
         //    await dbContext.Posts.AddAsync(secondPost);
         //    await dbContext.SaveChangesAsync();
 
-        //    var result = postService.GetDetails(5);
+        // var result = postService.GetDetails(5);
 
-        //    Assert.NotNull(result);
+        // Assert.NotNull(result);
         //    Assert.Equal("testTitle", result.Title);
         //    Assert.Equal("testContent", result.Content);
         //    Assert.Equal("Icaka99", result.UserUserName);
         //    Assert.Equal("Icaka99", result.User.Id);
         //    Assert.Equal(2, result.CategoryId);
-        //}
+        // }
     }
 }

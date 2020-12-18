@@ -1,13 +1,14 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using FitnessCare.Data;
-using FitnessCare.Data.Models;
-using Microsoft.EntityFrameworkCore;
-using Xunit;
-
-namespace FitnessCare.Services.Data.Tests
+﻿namespace FitnessCare.Services.Data.Tests
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using FitnessCare.Data;
+    using FitnessCare.Data.Models;
+    using Microsoft.EntityFrameworkCore;
+    using Xunit;
+
     public class VotesServiceTests
     {
         [Fact]

@@ -1,7 +1,6 @@
 ﻿namespace FitnessCare.Services.Data.Tests
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -304,18 +303,18 @@
             Assert.Empty(result);
         }
 
-        //System.InvalidCastException : Unable to cast object of type 'System.Linq.Expressions.NewExpression'
-        //to type 'System.Linq.Expressions.MethodCallExpression'.
-        //[Fact]
-        //public async Task GetDetailsShouldReturnOnlyCorrectArticle()
-        //{
+        // System.InvalidCastException : Unable to cast object of type 'System.Linq.Expressions.NewExpression'
+        // to type 'System.Linq.Expressions.MethodCallExpression'.
+        // [Fact]
+        // public async Task GetDetailsShouldReturnOnlyCorrectArticle()
+        // {
         //    var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>()
         //        .UseInMemoryDatabase(Guid.NewGuid().ToString());
         //    var dbContext = new ApplicationDbContext(optionsBuilder.Options);
 
-        //    var articleService = new ArticleService(dbContext, null);
+        // var articleService = new ArticleService(dbContext, null);
 
-        //    var comments = new List<Comment>();
+        // var comments = new List<Comment>();
         //    comments.Add(new Comment
         //    {
         //        Id = 1,
@@ -328,7 +327,7 @@
         //        },
         //    });
 
-        //    var firstArticle = new Article
+        // var firstArticle = new Article
         //    {
         //        Title = "testTitle",
         //        Content = "testContent",
@@ -343,7 +342,7 @@
         //        },
         //    };
 
-        //    var votes = new List<Vote>();
+        // var votes = new List<Vote>();
         //    votes.Add(new Vote
         //    {
         //        ArticleId = 8,
@@ -357,20 +356,19 @@
         //        Article = firstArticle,
         //    });
 
-        //    firstArticle.Votes = votes;
+        // firstArticle.Votes = votes;
 
-        //    var secondArticle = new Article { Id = 10 };
+        // var secondArticle = new Article { Id = 10 };
 
-        //    await dbContext.AddAsync(secondArticle);
+        // await dbContext.AddAsync(secondArticle);
         //    await dbContext.AddAsync(firstArticle);
         //    await dbContext.SaveChangesAsync();
 
-        //    var result = articleService.GetDetails(8);
+        // var result = articleService.GetDetails(8);
 
-        //    Assert.NotNull(result);
+        // Assert.NotNull(result);
         //    Assert.Equal(8, result.Id);
-        //}
-
+        // }
         [Fact]
         public async Task DeleteShouldDeleteArticleById()
         {

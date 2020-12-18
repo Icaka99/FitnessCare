@@ -1,11 +1,12 @@
-﻿using System;
-using FitnessCare.Data;
-using FitnessCare.Data.Models;
-using Microsoft.EntityFrameworkCore;
-using Xunit;
-
-namespace FitnessCare.Services.Data.Tests
+﻿namespace FitnessCare.Services.Data.Tests
 {
+    using System;
+
+    using FitnessCare.Data;
+    using FitnessCare.Data.Models;
+    using Microsoft.EntityFrameworkCore;
+    using Xunit;
+
     public class QuotesServiceTests
     {
         [Fact]
