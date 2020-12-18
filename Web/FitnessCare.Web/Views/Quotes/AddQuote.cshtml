@@ -1,0 +1,41 @@
+﻿@inject Microsoft.Extensions.Configuration.IConfiguration Configuration
+@using FitnessCare.Web.ViewModels.Quotes
+@model QuoteInputModel
+
+@{ this.ViewData["Title"] = "Add Quote";}
+
+<section class="py-5">
+    <div class="container">
+        <h1 style="margin: 2%; text-align: center;">Add Quote</h1>
+        <div style="padding: 5%;">
+
+            <form method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="AuthorName"></label>
+                    <input asp-for="AuthorName" class="form-control" name="AuthorName" placeholder="Author Name">
+                    <span asp-validation-for="AuthorName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Content"></label>
+                    <textarea rows="2" asp-for="Content" class="form-control" name="Content" placeholder="Content"></textarea>
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </div>
+                <input type="hidden" id="RecaptchaValue" name="RecaptchaValue" />
+                <button type="submit" class="btn btn-primary text-uppercase">Submit</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts
+{
+    <script src="https://www.google.com/recaptcha/api.js?render=@this.Configuration["GoogleReCaptcha:Key"]"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('@this.Configuration["GoogleReCaptcha:Key"]', { action: 'contact_form' }).then(function (token) {
+                document.getElementById("RecaptchaValue").value = token;
+            });
+        });
+    </script>
+}

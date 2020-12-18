@@ -65,6 +65,7 @@
     <Folder Include="Areas\Identity\Data\" />
     <Folder Include="CustomTagHelpers\" />
     <Folder Include="Areas\Administration\Views\Administration\" />
+    <Folder Include="Views\Quotes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml" />
@@ -91,6 +92,7 @@
     <Content Remove="Areas\Administration\Views\Quotes\Edit.cshtml" />
     <Content Remove="Areas\Administration\Views\Quotes\Delete.cshtml" />
     <Content Remove="Areas\Administration\Views\Quotes\Index.cshtml" />
+    <Content Remove="Areas\Administration\Views\Categories\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="wwwroot\css\error.css">

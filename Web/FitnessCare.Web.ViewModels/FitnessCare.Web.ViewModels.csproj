@@ -36,5 +36,6 @@
     <Folder Include="Workouts\" />
     <Folder Include="Home\" />
     <Folder Include="Scheduler\" />
+    <Folder Include="Quotes\" />
   </ItemGroup>
 </Project>
