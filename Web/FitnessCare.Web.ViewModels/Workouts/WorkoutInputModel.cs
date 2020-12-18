@@ -17,7 +17,7 @@
         [Required(ErrorMessage = "Please, enter a Date!")]
         public DateTime Date { get; set; }
 
-        [Range(0, 24 * 60)]
+        [Range(1, 24 * 60)]
         [Display(Name = "Duration(in minutes)")]
         public int Duration { get; set; }
 

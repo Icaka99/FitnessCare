@@ -9,7 +9,8 @@
     public class ExerciseInputModel
     {
         [Required]
-        [MinLength(3, ErrorMessage = "Name minimum length is 3 characters")]
+        [MinLength(3, ErrorMessage = "Name minimum length is 3 characters!")]
+        [MaxLength(80, ErrorMessage = "Name maximum length is 80!")]
         public string Name { get; set; }
 
         [Display(Name = "Muscle group")]
