@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using FitnessCare.Common;
 
 namespace FitnessCare.Web.Areas.Identity.Pages.Account
 {
@@ -101,7 +102,7 @@ namespace FitnessCare.Web.Areas.Identity.Pages.Account
                 {
                     Input = new InputModel
                     {
-                        Email = info.Principal.FindFirstValue(ClaimTypes.Email)
+                        Email = info.Principal.FindFirstValue(ClaimTypes.Email),
                     };
                 }
                 return Page();
@@ -121,7 +122,7 @@ namespace FitnessCare.Web.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
+                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, ProfilePictureUrl = GlobalConstants.DefaultProfilePicUrl };
 
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
