@@ -61,6 +61,7 @@
                 PageNumber = id,
                 OrderedArticles = orderedArticles,
                 SearchString = input.SearchString,
+                Categories = this.categoryService.GetRandomCategories(6),
             };
 
             return this.View(nameof(this.Blog), model);

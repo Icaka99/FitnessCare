@@ -46,7 +46,7 @@
                             Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>().Select(d =>
                                 new XElement(
                                     "h5",
-                                    new XAttribute("class", "col-lg p-1 text-center"),
+                                    new XAttribute("class", "col-lg p-1 text-center text-light"),
                                     d.ToString())))),
                     new XElement(
                         "div",
