@@ -2,6 +2,8 @@
 @using FitnessCare.Data.Models
 @inject Microsoft.AspNetCore.Identity.UserManager<ApplicationUser> userManager
 
+@{ this.ViewData["Title"] = "Post";}
+
 @{
     @using System.Linq;
     var counter = 0;
@@ -71,7 +73,7 @@
                     <div class="d-flex flex-row post-title">
                         <h5>@Model.Title</h5><span class="ml-2">(@Model.UserUserName)</span>
                     </div>
-                    <div class="d-flex flex-row align-items-center align-content-center post-title"><span class="mr-2 comments">Comments: @Model.CommentsCount</span><time datetime="@Model.CreatedOn.ToString("O")"></time></div>
+                    <div class="d-flex flex-row align-items-center align-content-center post-title"><span class="mr-2 comments">Comments: @Model.CommentsCount,</span> On:<time datetime="@Model.CreatedOn.ToString("O")"></time></div>
                     <div class="comment-text-sm">
                         <hr />
                         <span class="border rounded-lg">

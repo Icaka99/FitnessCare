@@ -11,6 +11,8 @@
 </head>
 
 @{
+    this.ViewData["Title"] = "Article";
+
     @using System.Linq;
     var counter = 0;
 
@@ -101,8 +103,9 @@
                 <!-- Author -->
                 <p class="lead">
                     by
-                    <a href="#">@Model.UserUserName</a> <span>Posted on <time datetime="@Model.CreatedOn.ToString("O")"></time>
-
+                    <span class="badge badge-primary text-wrap">@Model.UserUserName</span>
+                    <span>
+                        Posted on <span class="badge badge-primary text-wrap"><time datetime="@Model.CreatedOn.ToString("O")"></time></span>
                     </span>
                     @if (this.User.Identity.IsAuthenticated)
                     {
@@ -200,7 +203,12 @@
                     </div>
                 </div>*@
 
-                @if (this.User.IsInRole(FitnessCare.Common.GlobalConstants.AdministratorRoleName))
+                @if (this.User.Identity.Name == Model.UserUserName)
+                {
+
+                }
+
+                @if (this.User.IsInRole(FitnessCare.Common.GlobalConstants.AdministratorRoleName) || this.User.Identity.Name == Model.UserUserName)
                 {
                     <div>
                         <a class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop">Delete</a>
@@ -239,7 +247,6 @@
         <form method="post" id="afToken"></form>
 
     </div>
-    Bootstrap core JavaScript
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

@@ -1,4 +1,6 @@
-﻿<div class="container-fluid mt-100">
+﻿@{ this.ViewData["Title"] = "Category";}
+
+<div class="container-fluid mt-100">
     @if (this.TempData.ContainsKey("Message"))
     {
         <div class="alert alert-success alert-dismissable">
@@ -14,7 +16,7 @@
                 <div class="col-4 text-muted">
                     <div class="row no-gutters align-items-center">
                         <div class="col-4">Comments</div>
-                        <div class="col-8">Last update</div>
+                        <div class="col-8">By</div>
                     </div>
                 </div>
             </div>
@@ -26,24 +28,15 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col">
                         <a asp-controller="Posts" asp-action="Post" asp-route-id="@post.Id" class="text-big" data-abc="true">@post.Title</a>
-                        <div class="text-muted small mt-1">Started <time datetime="@post.CreatedOn.ToString("O")"></time> &nbsp;·&nbsp; <a href="javascript:void(0)" class="text-muted" data-abc="true">@post.UserUserName</a></div>
+                        <div class="text-muted small mt-1">Started <time datetime="@post.CreatedOn.ToString("O")"></time> &nbsp;·&nbsp;</div>
                     </div>
                     <div class="d-none d-md-block col-4">
                         <div class="row no-gutters align-items-center">
                             <div class="col-4">@post.CommentsCount <i class="fas fa-comment-dots"></i> </div>
-                            <div class="media col-8 align-items-center">
-                                <img src="@post.User.ProfilePictureUrl" alt="" class="rounded-circle" width="70">
+                            <div class="media col-8 align-items-center row">
+                                <img src="@post.User.ProfilePictureUrl" alt="" class="rounded-circle col-md-6" width="70">
                                 <div class="media-body flex-truncate ml-2">
-                                    <div class="line-height-1 text-truncate">
-                                        @if (post.ModifiedOn == null)
-                                        {
-                                            <span><i class="far fa-times-circle"></i></span>
-                                        }
-                                        else
-                                        {
-                                            <time datetime="@post.ModifiedOn.ToString("O")"></time>
-                                        }
-                                    </div> <a href="javascript:void(0)" class="text-muted small text-truncate" data-abc="true">by @post.UserUserName</a>
+                                    <span class="badge badge-primary text-wrap">@post.UserUserName</span>
                                 </div>
                             </div>
                         </div>

@@ -1,5 +1,7 @@
 ﻿@model FitnessCare.Web.ViewModels.Blog.ArticlesListViewModel
 
+@{ this.ViewData["Title"] = "Blog";}
+
 <head>
 
     <meta charset="utf-8">
@@ -19,6 +21,8 @@
     <!-- Page Content -->
     <div class="container">
 
+        <h1 class="my-4">Search through different topics in our blog :)</h1>
+
 
         @if (this.TempData.ContainsKey("Message"))
         {
@@ -35,13 +39,13 @@
 
                 @if (Model.SearchString == string.Empty)
                 {
-                    <h1>Ooops!</h1>
+                    <h2>Ooops!</h2>
                 }
                 else if (Model.SearchString != null)
                 {
-                    <h1 class="my-4">
+                    <h2 class="my-4">
                         Your search "@Model.SearchString" found results: @Model.ArticlesCount
-                    </h1>
+                    </h2>
                 }
                 else { }
 
@@ -65,8 +69,8 @@
                                 <a asp-controller="Articles" asp-action="Article" asp-route-id="@article.Id" class="btn btn-primary">Read More &rarr;</a>
                             </div>
                             <div class="card-footer text-muted">
-                                Posted on <time datetime="@article.CreatedOn.ToString("O")"></time> by
-                                <a href="#">@article.UserUserName</a>
+                                Posted on: <span class="badge badge-primary text-wrap"><time datetime="@article.CreatedOn.ToString("O")"></time></span> by:
+                                <span class="badge badge-primary text-wrap">@article.UserUserName</span>
                             </div>
                         </div>
                     }
@@ -141,11 +145,11 @@
 
                 <!-- Side Widget -->
                 @*<div class="card my-4">
-                    <h5 class="card-header">Side Widget</h5>
-                    <div class="card-body">
-                        You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
-                    </div>
-                </div>*@
+                        <h5 class="card-header">Side Widget</h5>
+                        <div class="card-body">
+                            You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+                        </div>
+                    </div>*@
 
                 <a class="btn btn-primary" asp-controller="Articles" asp-action="Add">Add article</a>
 
