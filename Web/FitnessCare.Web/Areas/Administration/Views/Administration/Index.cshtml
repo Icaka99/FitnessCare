@@ -1,16 +1,48 @@
-﻿<div class="btn-group">
-    <a class="btn btn-primary" asp-area="Administration" asp-controller="Articles" asp-action="Index">Articles</a>
-    <a class="btn btn-primary" asp-area="Administration" asp-controller="Authors" asp-action="Index">Authors</a>
-    <a class="btn btn-primary" asp-area="Administration" asp-controller="Categories" asp-action="Index">Categories</a>
-    <a class="btn btn-primary" asp-area="Administration" asp-controller="Comments" asp-action="Index">Comments</a>
-    <a class="btn btn-primary" asp-area="Administration" asp-controller="ContactForms" asp-action="Index">ContactForms</a>
-    <a class="btn btn-primary" asp-area="Administration" asp-controller="Exercises" asp-action="Index">Exercises</a>
-    <a class="btn btn-primary" asp-area="Administration" asp-controller="MuscleGroups" asp-action="Index">MuscleGroups</a>
-    <a class="btn btn-primary" asp-area="Administration" asp-controller="Posts" asp-action="Index">Posts</a>
-    <a class="btn btn-primary" asp-area="Administration" asp-controller="Quotes" asp-action="Index">Quotes</a>
-    <a class="btn btn-primary" asp-area="Administration" asp-controller="Sets" asp-action="Index">Sets</a>
-    <a class="btn btn-primary" asp-area="Administration" asp-controller="Votes" asp-action="Index">Votes</a>
-    <a class="btn btn-primary" asp-area="Administration" asp-controller="WorkoutExercises" asp-action="Index">WorkoutExercises</a>
-    <a class="btn btn-primary" asp-area="Administration" asp-controller="Workouts" asp-action="Index">Workouts</a>
-    <a class="btn btn-primary" asp-area="Administration" asp-controller="WorkoutTypes" asp-action="Index">WorkoutTypes</a>
+﻿@{ this.ViewData["Title"] = "Administration";}
+
+<h1 class="text-center">Administration page</h1>
+
+<div class="row">
+    <div class="btn-group col-md-12 my-3">
+        <a class="btn btn-primary btn-pill" asp-area="Administration" asp-controller="Articles" asp-action="Index">Articles</a>
+    </div>
+    <div class="btn-group col-md-12 my-3">
+        <a class="btn btn-secondary btn-pill" asp-area="Administration" asp-controller="Authors" asp-action="Index">Authors</a>
+    </div>
+    <div class="btn-group col-md-12 my-3">
+        <a class="btn btn-success btn-pill" asp-area="Administration" asp-controller="Categories" asp-action="Index">Categories</a>
+    </div>
+    <div class="btn-group col-md-12 my-3">
+        <a class="btn btn-info btn-pill" asp-area="Administration" asp-controller="Comments" asp-action="Index">Comments</a>
+    </div>
+    <div class="btn-group col-md-12 my-3">
+        <a class="btn btn-warning btn-pill" asp-area="Administration" asp-controller="ContactForms" asp-action="Index">ContactForms</a>
+    </div>
+    <div class="btn-group col-md-12 my-3">
+        <a class="btn btn-danger btn-pill" asp-area="Administration" asp-controller="Exercises" asp-action="Index">Exercises</a>
+    </div>
+    <div class="btn-group col-md-12 my-3">
+        <a class="btn btn-light btn-pill" asp-area="Administration" asp-controller="MuscleGroups" asp-action="Index">MuscleGroups</a>
+    </div>
+    <div class="btn-group col-md-12 my-3">
+        <a class="btn btn-dark btn-pill" asp-area="Administration" asp-controller="Posts" asp-action="Index">Posts</a>
+    </div>
+    <div class="btn-group col-md-12 my-3">
+        <a class="btn btn-primary btn-pill" asp-area="Administration" asp-controller="Quotes" asp-action="Index">Quotes</a>
+    </div>
+    <div class="btn-group col-md-12 my-3">
+        <a class="btn btn-secondary btn-pill" asp-area="Administration" asp-controller="Sets" asp-action="Index">Sets</a>
+    </div>
+    <div class="btn-group col-md-12 my-3">
+        <a class="btn btn-success btn-pill" asp-area="Administration" asp-controller="Votes" asp-action="Index">Votes</a>
+    </div>
+    <div class="btn-group col-md-12 my-3">
+        <a class="btn btn-info" asp-area="Administration" asp-controller="WorkoutExercises" asp-action="Index">WorkoutExercises</a>
+    </div>
+    <div class="btn-group col-md-12 my-3">
+        <a class="btn btn-warning btn-pill" asp-area="Administration" asp-controller="Workouts" asp-action="Index">Workouts</a>
+    </div>
+    <div class="btn-group col-md-12 my-3">
+        <a class="btn btn-danger btn-pill" asp-area="Administration" asp-controller="WorkoutTypes" asp-action="Index">WorkoutTypes</a>
+    </div>
 </div>
